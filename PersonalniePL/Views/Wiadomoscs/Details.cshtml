@@ -1,0 +1,42 @@
+﻿@model PersonalniePL.Models.Wiadomosc
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Wiadomosc</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Podopiecznies.Avatar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Podopiecznies.Avatar)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Treners.Avatar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Treners.Avatar)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tresc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tresc)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

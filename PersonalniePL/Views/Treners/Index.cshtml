@@ -1,0 +1,83 @@
+﻿@model PagedList.IPagedList<PersonalniePL.Models.Trener>
+@using.PagedList.MVC;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@using (Html.BeginForm("Index", "Treners", FormMethod.Get))
+{
+    <p>
+        Szukaj po nazwisku: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Search" />
+    </p>
+}
+<table class="table">
+
+    <tr>
+
+        <th>AVATAR</th>
+        <th>ID</th>
+        <th>
+            Nick
+        </th>
+        <th>
+            @Html.ActionLink("Sortuj po imieniu", "Index", new { sortOrder = ViewBag.ImieSortParm })
+        </th>
+        <th>
+            Nazwisko
+        </th>
+        <th>
+            @Html.ActionLink("Sortuj po liczbie", "Index", new { sortOrder = ViewBag.LiczbaMaksPodopiecznychSortParm })
+        </th>
+        <th>
+            Akcja
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @if (item.Avatar is null)
+                {
+                    <img src="~/Avatary/avi.png" alt="Tu powinien byc avatar" height="50px" width="50px" />}
+                else
+                {
+                    <img src="~/Avatary/@item.Avatar" alt="Tu powinien byc avatar" height="50px" width="50px" />}
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Imie)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nazwisko)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LiczbaMaksPodopiecznych)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", "Treners", new { id = item.ID }, "") |
+                @Html.ActionLink("Details", "Details", "Treners", new { UserName = item.UserName }, "") |
+                @Html.ActionLink("Delete", "Delete", "Treners", new { id = item.ID }, "") |
+                @Html.ActionLink("Napisz Wiadomosc do trenera", "Create", "Wiadomoscs", new { id = item.ID }, "")
+            </td>
+
+        </tr>
+    }
+
+</table>
+
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

@@ -1,0 +1,51 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+    @Html.AntiForgeryToken()
+
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            @Html.ActionLink("Witaj," + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+        </li>
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                @if (Context.User.IsInRole("Trener"))
+                {
+                    <li>@Html.ActionLink("Profil", "Details", "Treners", new { UserName = User.Identity.Name }, "")</li>
+                    <li>@Html.ActionLink("Praca", "Index", "Plans", new { UserName = User.Identity.Name }, "")</li>
+                    <li>@Html.ActionLink("Twoi Podopieczni", "Index", "Podopiecznies", new { UserName = User.Identity.Name }, "")</li>
+                }
+                @if (Context.User.IsInRole("Podopieczny"))
+                {
+                    <li>@Html.ActionLink("Trenerzy", "Index", "Treners")</li>
+                    <li>@Html.ActionLink("Profil", "Details", "Podopiecznies", new { UserName = User.Identity.Name }, "")</li>
+                    <li>@Html.ActionLink("Moje Plany", "Index", "Plans", new { UserName = User.Identity.Name }, "")</li>
+                }
+
+                <li>@Html.ActionLink("Skrzynka", "Index", "Wiadomoscs", new { UserName = User.Identity.Name }, "")</li>
+                <li><a href="javascript:document.getElementById('logoutForm').submit()">Wyloguj</a></li>
+
+            </ul>
+        </li>
+     
+    </ul>
+    }
+}
+else
+{
+    
+<ul class="nav navbar-nav navbar-right">
+    <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+           Dołącz <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+            <li>@Html.ActionLink("Zarejestruj", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+            <li>@Html.ActionLink("Zaloguj", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        </ul></li></ul>
+        }

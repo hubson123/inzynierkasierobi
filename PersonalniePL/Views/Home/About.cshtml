@@ -1,0 +1,30 @@
+﻿@model IEnumerable<PersonalniePL.Models.StatystykiTrenerzy>
+
+@{
+    ViewBag.Title = "Statystyki Trenerów";
+}
+
+<h2>Statystyki trenerów</h2>
+
+<table>
+    <tr>
+        <th>
+            Trener
+        </th>
+        <th>
+            Ilosc podopiecznych
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IDTren.UserName)
+            </td>
+            <td>
+                @item.Ilu
+            </td>
+        </tr>
+    }
+</table>

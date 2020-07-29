@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Contact";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Request for Assistance</title>
+</head>
+<body>
+    <h2>Zostaw opinię bądź powiedz czego brakuje tej stronie.</h2>
+    @using (Html.BeginForm())
+    {
+        <div>
+            Email:
+            @Html.TextBox("title")
+        </div>
+
+        <div>
+            UWagi: <br />
+            @Html.TextBox("body")
+        </div>
+
+        <div>
+            <input type="submit" value="Submit" />
+        </div>}
+</body>
+</html>

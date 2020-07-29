@@ -1,0 +1,74 @@
+﻿@model PersonalniePL.Models.Trener
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Trener</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Avatar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Avatar)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Imie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Imie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nazwisko)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nazwisko)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Wiek)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Wiek)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LiczbaMaksPodopiecznych)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LiczbaMaksPodopiecznych)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Numerkonta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Numerkonta)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,58 @@
+﻿@model PersonalniePL.Models.Plan
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Plan</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Podopieczny.Avatar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Podopieczny.Avatar)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RodzajPlanu.Nazwa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RodzajPlanu.Nazwa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Trener.Avatar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Trener.Avatar)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cena)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cena)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Plik)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Plik)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
