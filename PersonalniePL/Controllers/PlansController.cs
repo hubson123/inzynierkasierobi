@@ -39,11 +39,11 @@ namespace PersonalniePL.Controllers
         }
 
         // GET: Plans/Create
-        public ActionResult Create()
+        public ActionResult Create(int id)
         {
-            ViewBag.PodopiecznyID = new SelectList(db.Podopiecznies, "ID", "Avatar");
-            ViewBag.RodzajPlanuID = new SelectList(db.RodzajPlanus, "Id", "Nazwa");
-            ViewBag.TrenerID = new SelectList(db.Treners, "ID", "Avatar");
+            ViewBag.RodzajPlanuId = new SelectList(db.RodzajPlanus, "ID", "Nazwa");
+            ViewBag.PodopiecznyId = new SelectList(db.Podopiecznies.Where(t => t.ID == id), "ID", "Nazwisko");
+            ViewBag.TrenerId = new SelectList(db.Treners.Where(n => n.UserName == User.Identity.Name), "ID", "Nazwisko");
             return View();
         }
 
@@ -54,13 +54,14 @@ namespace PersonalniePL.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,TrenerID,PodopiecznyID,RodzajPlanuID,Cena,Plik")] Plan plan)
         {
-            HttpPostedFileBase plik = Request.Files["plikzplanem"];
+            HttpPostedFileBase plik = Request.Files["pplan"];
             if (plik != null && plik.ContentLength > 0)
             {
                 plan.Plik = plik.FileName;
                 Trener tr = db.Treners.Single(t => t.UserName == User.Identity.Name);
                 plan.TrenerID = tr.ID;
-                plik.SaveAs(HttpContext.Server.MapPath("~/Plany/") + plan.Podopieczny.UserName + plan.Plik);
+                plan.Zablokowany = true;
+                plik.SaveAs(HttpContext.Server.MapPath("~/Plany/") + plan.Plik);
             }
             if (ModelState.IsValid)
             {
@@ -69,10 +70,7 @@ namespace PersonalniePL.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.PodopiecznyID = new SelectList(db.Podopiecznies, "ID", "Avatar", plan.PodopiecznyID);
-            ViewBag.RodzajPlanuID = new SelectList(db.RodzajPlanus, "Id", "Nazwa", plan.RodzajPlanuID);
-            ViewBag.TrenerID = new SelectList(db.Treners, "ID", "Avatar", plan.TrenerID);
-            return View(plan);
+    return View(plan);
         }
 
         // GET: Plans/Edit/5
@@ -106,7 +104,7 @@ namespace PersonalniePL.Controllers
                 plan.Plik = plik.FileName;
                 Trener tr = db.Treners.Single(t => t.UserName == User.Identity.Name);
                 plan.TrenerID = tr.ID;
-                plik.SaveAs(HttpContext.Server.MapPath("~/Plany/") + plan.Podopieczny.UserName + plan.Plik);
+                plik.SaveAs(HttpContext.Server.MapPath("~/Plany/") + plan.Podopieczny.UserName +"/"+ plan.Plik);
             }
             if (ModelState.IsValid)
             {
@@ -114,9 +112,7 @@ namespace PersonalniePL.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.PodopiecznyID = new SelectList(db.Podopiecznies, "ID", "Avatar", plan.PodopiecznyID);
-            ViewBag.RodzajPlanuID = new SelectList(db.RodzajPlanus, "Id", "Nazwa", plan.RodzajPlanuID);
-            ViewBag.TrenerID = new SelectList(db.Treners, "ID", "Avatar", plan.TrenerID);
+
             return View(plan);
         }
 

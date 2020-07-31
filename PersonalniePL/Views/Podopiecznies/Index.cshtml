@@ -12,12 +12,6 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Trener.Avatar)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Avatar)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.UserName)
         </th>
         <th>
@@ -35,12 +29,6 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Trener.Avatar)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Avatar)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.UserName)
         </td>
         <td>
@@ -53,9 +41,14 @@
             @Html.DisplayFor(modelItem => item.Wiek)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            <div class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    Opcje <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>@Html.ActionLink("Rozpisz plan", "Create", "Plans", new { id = item.ID }, "") |</li>  
+                    <li> @Html.ActionLink("Details", "Details", new { id = item.ID }) |</li>
+                    <li> @Html.ActionLink("Delete", "Delete", new { id = item.ID })</li> 
         </td>
     </tr>
 }

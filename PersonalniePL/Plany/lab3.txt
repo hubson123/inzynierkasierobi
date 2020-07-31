@@ -1,0 +1,142 @@
+--> zad 3.1
+CREATE OR REPLACE PROCEDURE zad31  
+IS  
+sprawdz student.pesel%TYPE;  
+pes student.pesel%TYPE;  
+BEGIN  
+FOR rowek IN (SELECT * FROM student)   
+LOOP  
+sprawdz:=TO_NUMBER(TO_CHAR(rowek.data_ur,'YYMMDD'));  
+dbms_output.put_line(sprawdz); 
+pes:=TO_NUMBER(TO_CHAR(SUBSTR(rowek.pesel,1,6),'999999'));  
+dbms_output.put_line(pes); 
+IF sprawdz = pes THEN  
+dbms_output.put_line('zgadza sie');  
+ELSE dbms_output.put_line('nie nie to nie tak mordo');  
+END IF;  
+END LOOP;  
+END; 
+/
+BEGIN
+zad31();
+END;
+/
+-->zad 3.2
+CREATE OR REPLACE PROCEDURE zad32(names IN varchar2,surname IN varchar2)     
+IS      
+BEGIN      
+FOR rowek IN (SELECT * FROM student)       
+LOOP      
+IF names = rowek.imie THEN      
+IF surname = rowek.nazwisko THEN    
+dbms_output.put_line(rowek.wzrost);      
+ELSE   
+RAISE NO_DATA_FOUND;   
+END IF; 
+ELSE   
+RAISE NO_DATA_FOUND;   
+END IF;   
+END LOOP;      
+EXCEPTION    
+WHEN NO_DATA_FOUND THEN    
+dbms_output.put_line('Brak studenta o takim imieniu badz nazwisku.');    
+END;
+/
+BEGIN
+zad32('Anita','Stojak');
+zad32('Anita','Niestojak');
+zad32('Antek','Stojak');
+END;
+/
+-->zad 3.3
+CREATE OR REPLACE PROCEDURE zad33(arg1 IN NUMBER,arg2 IN NUMBER)    
+IS    
+sumuj NUMBER; 
+roznica NUMBER; 
+iloczyn NUMBER; 
+iloraz NUMBER; 
+   
+BEGIN    
+sumuj:= arg1+arg2; 
+roznica := arg1-arg2; 
+iloczyn := arg1*arg2; 
+iloraz := arg1/arg2; 
+IF THEN
+RAISE twoj_blad;
+ELSE
+dbms_output.put_line(sumuj); 
+dbms_output.put_line(roznica); 
+dbms_output.put_line(iloczyn); 
+dbms_output.put_line(iloraz); 
+
+END IF;
+EXCEPTION 
+WHEN ZERO_DIVIDE THEN 
+dbms_output.put_line(sumuj); 
+dbms_output.put_line(roznica); 
+dbms_output.put_line(iloczyn);
+dbms_output.put_line('nie dzielimy przez zero'); 
+WHEN VALUE_ERROR THEN 
+dbms_output.put_line('tylko liczby calkowite'); 
+WHEN twoj_blad then
+dbms_output.put_line('tylko liczby calkowite');
+END; 
+-->ZAD3.4
+DECLARE
+  pobory         VARCHAR(64) := '1000.00';  
+  pobory_num     NUMBER;
+    NIEPRAWIDLOWE_TO_COS EXCEPTION;
+    PRAGMA EXCEPTION_INIT (NIEPRAWIDLOWE_TO_COS,-06502);
+BEGIN
+  
+ pobory := TO_CHAR(pobory, '$9999.00');
+  DBMS_OUTPUT.PUT_LINE(RPAD('Pobory początkowe: ',32) || pobory);  
+pobory_num := TO_NUMBER(pobory, '9999.00');
+  pobory_num := pobory_num * 1.55;
+  pobory := TO_CHAR(pobory_num, '$999,999.00');
+  DBMS_OUTPUT.PUT_LINE('Sformatowne pobory końcowe:  ' || pobory); 
+  EXCEPTION
+  WHEN NIEPRAWIDLOWE_TO_COS THEN
+  DBMS_OUTPUT.PUT_LINE('Nieprawidłowy format poborów: $1000.00. Dozwolone są tylko cyfry i kropka dziesiętna.');
+END;
+-->ZAD3.5
+DECLARE  
+  pobory         VARCHAR(64) := '1000.00';   
+  pobory_num     NUMBER; 
+  pob VARCHAR2(2);
+
+BEGIN 
+   
+ pobory := TO_CHAR(pobory, '$9999.00'); 
+ pob:=SUBSTR(pobory,2,1);
+ if pob = '$' then
+ DBMS_OUTPUT.PUT_LINE(pob);
+ raise_application_error(-20001,'BŁĄD: Znak $ nie jest dozwolony');
+ raise VALUE_ERROR;
+ ELSE
+  DBMS_OUTPUT.PUT_LINE(RPAD('Pobory początkowe: ',32) || pobory);   
+pobory_num := TO_NUMBER(pobory, '9999.00'); 
+  pobory_num := pobory_num * 1.55; 
+  pobory := TO_CHAR(pobory_num, '$999,999.00'); 
+  DBMS_OUTPUT.PUT_LINE('Sformatowne pobory końcowe:  ' || pobory);  
+  raise_application_error(-20001,'BŁĄD: Znak $ nie jest dozwolony');
+ END IF;
+END;
+-->ZAD3.6
+ALTER TABLE student
+ADD data_ost_mod date;
+/
+CREATE OR REPLACE PROCEDURE zad36(pes in student.pesel%TYPE)     
+IS    
+BEGIN    
+    FOR rowek IN (SELECT * FROM student) LOOP    
+        UPDATE student SET data_ost_mod=SYSDATE WHERE pes=rowek.pesel;    
+    END LOOP;   
+        EXCEPTION  
+            WHEN NO_DATA_FOUND THEN  
+            DBMS_OUTPUT.PUT_LINE ('Wystąpił błąd.');      
+            WHEN VALUE_ERROR THEN  
+            DBMS_OUTPUT.PUT_LINE('Zla wartosc.');  
+END; 
+/
+

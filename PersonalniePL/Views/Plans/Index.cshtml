@@ -26,7 +26,10 @@
         <th>
             @Html.DisplayNameFor(model => model.Plik)
         </th>
-        <th></th>
+        @if (Context.User.IsInRole("Trener")){
+            <th>Opcje
+                </th> }
+        
     </tr>
 
 @foreach (var item in Model) {
@@ -44,17 +47,47 @@
             @Html.DisplayFor(modelItem => item.Cena)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Plik)
+            @if (item.Zablokowany == true)
+            {
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                   Oto twój plan
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                               Dostęp do planu zablokowany - prosimy dokonać wpłaty w wysokości @item.Cena na konto @item.Trener.Numerkonta
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <a href="~/Plany/" @item.Plik>Oto twój plan</a>
+            }
+
         </td>
         <td>
             <div class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    Dołącz <span class="caret"></span>
+                    Opcje <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                    <li></li> @Html.ActionLink("Edit", "Edit", new { id = item.Id }) 
-                    <li></li>  @Html.ActionLink("Details", "Details", new { id = item.Id }) 
-                    <li></li> @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    <li> @Html.ActionLink("Edit", "Edit", new { id = item.Id }) </li>
+                <li>  @Html.ActionLink("Details", "Details", new { id = item.Id }) </li>
+                <li> @Html.ActionLink("Delete", "Delete", new { id = item.Id })</li>
 
 
                 </ul>

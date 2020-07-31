@@ -20,7 +20,7 @@ namespace PersonalniePL.Models
         public virtual Podopieczny Podopieczny { get; set; }
         public virtual RodzajPlanu RodzajPlanu { get; set; }
         public string Plik { get; set; }
-
+        public bool Zablokowany { get; set; }
 
     }
 }
