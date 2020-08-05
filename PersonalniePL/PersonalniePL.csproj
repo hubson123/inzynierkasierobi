@@ -210,7 +210,6 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="zdj\img1.jpg" />
     <Content Include="zdj\img2.jpg" />
     <Content Include="zdj\img3.jpg" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />

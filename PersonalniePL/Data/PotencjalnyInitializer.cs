@@ -9,7 +9,7 @@ using System.Web;
 
 namespace PersonalniePL.Data
 {
-    public class PersonalnyInitializer : DropCreateDatabaseAlways<PersonalnyContext>
+    public class PersonalnyInitializer : DropCreateDatabaseIfModelChanges<PersonalnyContext>
     {
         protected override void Seed(PersonalnyContext context)
         {
@@ -44,7 +44,7 @@ namespace PersonalniePL.Data
             userManager.Create(user5, pass5);
             userManager.AddToRole(user5.Id, "Trener");
             context.SaveChanges();
-            var user6 = new ApplicationUser { UserName = "markow@o34.pl", Email = "markow@o34.pl" };
+            var user6 = new ApplicationUser {UserName = "markow@o34.pl", Email = "markow@o34.pl" };
             string pass6 = "Zaq1@WSX";
             userManager.Create(user6, pass6);
             userManager.AddToRole(user6.Id, "Trener");
@@ -68,7 +68,7 @@ namespace PersonalniePL.Data
             new Trener{UserName=user7.UserName,Imie="Jan",Nazwisko="Marecki",Wiek=32,LiczbaMaksPodopiecznych=2,Numerkonta="30254323058471537285928523"},
               new Trener{UserName=user6.UserName,Imie="Michał",Nazwisko="Wiśniewski",Wiek=46,LiczbaMaksPodopiecznych=23,Numerkonta="30254323058471537285928523"},
                 new Trener{UserName=user5.UserName,Imie="Joanna",Nazwisko="Gac",Wiek=21,LiczbaMaksPodopiecznych=7,Numerkonta="30254323058471537285928523"},
-                  new Trener{UserName=user4.UserName,Imie="Adam",Nazwisko="Wiejski",Wiek=25,LiczbaMaksPodopiecznych=4,Numerkonta="30254323058471537285928523"},
+                  new Trener{UserName=user4.UserName,Imie="Adam",Nazwisko="Wiejski",Wiek=25,LiczbaMaksPodopiecznych=0,Numerkonta="30254323058471537285928523"},
        };
             users.ForEach(r => context.Treners.Add(r));
             context.SaveChanges();
@@ -79,8 +79,6 @@ namespace PersonalniePL.Data
             };
             podop.ForEach(r => context.Podopiecznies.Add(r));
             context.SaveChanges();
-
-
 
         }
     }
