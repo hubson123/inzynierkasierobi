@@ -4,42 +4,57 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Wiadomości</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+<div class="takbylo">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Autor)
+            </th>
+            <th>
+                Pokaż wiadomości
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Podopiecznies.Avatar)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Treners.Avatar)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Tresc)
-        </th>
-        <th></th>
-    </tr>
+        @if (item.Autor != User.Identity.Name)
+        {
+            <td>
+                @Html.DisplayFor(modelItem => item.Autor)
+            </td>
+            <td>
+                <button id="btn1">Pokaż wiadomości</button>
+            </td>
+        }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Podopiecznies.Avatar)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Treners.Avatar)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Tresc)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
 
-</table>
+        @foreach (var item1 in Model)
+        {
+            @if (item1.Autor == item.Autor && item1.Treners.UserName==User.Identity.Name )
+            {
+                <div id="niezmyslam">
+
+                    @Html.DisplayFor(modelItem => item1.Tresc)
+
+                </div>
+            }
+
+        }
+    </tr>
+        }
+    </table>
+
+
+</div>
+<script>
+    $(document).ready(function () {
+        $("#niezmyslam").hide();
+        $("#btn1").click(function () {
+            $("#niezmyslam").show();
+        });
+    });
+</script>
+

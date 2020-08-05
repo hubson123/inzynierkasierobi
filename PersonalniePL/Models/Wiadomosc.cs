@@ -9,6 +9,8 @@ namespace PersonalniePL.Models
     public class Wiadomosc
     {
         public int Id { get; set; }
+        [Display(Name = "Autor")]
+        public string Autor { get; set; }
         [Display(Name = "Trener")]
         public int TrenerID { get; set; }
         [Display(Name = "Podopieczny")]

@@ -1,0 +1,5 @@
+-> poprawa chatu(historia wiadomości)
+-> mozliwośc blokowania planu przez trenera
+-> możliwość dodawania klientów jako podopiecznych
+-> front end(carousel)
+-> poprawa formularzy
