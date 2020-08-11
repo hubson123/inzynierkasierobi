@@ -23,6 +23,7 @@ namespace PersonalniePL.Data
             string pass = "B@rdzotrudnehaslo123";
             userManager.Create(user, pass);
             userManager.AddToRole(user.Id, "Adminek");
+            userManager.AddToRole(user.Id, "Trener");
             var user1 = new ApplicationUser { UserName = "mikoa@o34.pl", Email = "mikoa@o34.pl" };
             string pass1 = "Zaq1@WSX";
             userManager.Create(user1, pass1);
