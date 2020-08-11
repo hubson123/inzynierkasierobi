@@ -1,24 +1,21 @@
 ﻿@model IEnumerable<PersonalniePL.Models.Plan>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Plany treningowe";
 }
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Podopieczny.Avatar)
+            @Html.DisplayNameFor(model => model.Podopieczny.Nazwisko)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.RodzajPlanu.Nazwa)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Trener.Avatar)
+            @Html.DisplayNameFor(model => model.Trener.Nazwisko)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Cena)
@@ -35,13 +32,13 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Podopieczny.Avatar)
+            @Html.DisplayFor(modelItem => item.Podopieczny.Nazwisko)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.RodzajPlanu.Nazwa)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Trener.Avatar)
+            @Html.DisplayFor(modelItem => item.Trener.Nazwisko)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Cena)
@@ -85,9 +82,14 @@
                     Opcje <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
+                    @if (item.Zablokowany==false)
+                    {
+                        <li> @Html.ActionLink("Zezwól na dostęp", "Odblok", new { id = item.Id }) </li>
+                    }
+
                     <li> @Html.ActionLink("Edit", "Edit", new { id = item.Id }) </li>
-                <li>  @Html.ActionLink("Details", "Details", new { id = item.Id }) </li>
-                <li> @Html.ActionLink("Delete", "Delete", new { id = item.Id })</li>
+                    <li>  @Html.ActionLink("Details", "Details", new { id = item.Id }) </li>
+                    <li> @Html.ActionLink("Delete", "Delete", new { id = item.Id })</li>
 
 
                 </ul>

@@ -9,7 +9,7 @@ using System.Web;
 
 namespace PersonalniePL.Data
 {
-    public class PersonalnyInitializer : DropCreateDatabaseIfModelChanges<PersonalnyContext>
+    public class PersonalnyInitializer : DropCreateDatabaseAlways<PersonalnyContext>
     {
         protected override void Seed(PersonalnyContext context)
         {

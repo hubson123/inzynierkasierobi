@@ -1,0 +1,55 @@
+﻿@model PersonalniePL.Models.Plan
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Odblok</title>
+</head>
+<body>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    
+    
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        
+    <div class="form-horizontal">
+        <h4>Zezwalanie na dostęp</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.PodopiecznyID)
+        @Html.HiddenFor(model => model.RodzajPlanuID)
+        @Html.HiddenFor(model => model.TrenerID)
+        @Html.HiddenFor(model => model.Cena)
+        @Html.HiddenFor(model => model.Plik)
+        <div class="form-group">
+            @Html.LabelFor(model => model.Zablokowany, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.Zablokowany)
+                    @Html.ValidationMessageFor(model => model.Zablokowany, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Odblokuj" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+    }
+    
+    <div>
+        @Html.ActionLink("Index","Index","Home","")
+    </div>
+</body>
+</html>

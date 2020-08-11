@@ -37,7 +37,31 @@ namespace PersonalniePL.Controllers
             }
             return View(plan);
         }
-
+        public ActionResult Odblok(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Plan plan = db.Plans.Find(id);
+            if (plan == null)
+            {
+                return HttpNotFound();
+            }
+            return View(plan);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Odblok([Bind(Include = "Id,TrenerID,PodopiecznyID,RodzajPlanuID,Cena,Plik,Zablokowany")] Plan plan)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(plan).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(plan);
+        }
         // GET: Plans/Create
         public ActionResult Create(int id)
         {
