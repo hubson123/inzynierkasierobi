@@ -72,7 +72,7 @@
             }
             else
             {
-                <a href="~/Plany/" @item.Plik>Oto twój plan</a>
+                <a href="~/Plany/@item.PodopiecznyID/@item.Plik">Oto twój plan</a>
             }
 
         </td>
@@ -82,7 +82,7 @@
                     Opcje <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                    @if (item.Zablokowany==false)
+                    @if (item.Zablokowany==true)
                     {
                        <li>@Html.ActionLink("Zezwól na dostęp", "Odblok", new { id = item.Id })</li>
                     }

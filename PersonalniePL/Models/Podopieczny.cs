@@ -15,15 +15,15 @@ namespace PersonalniePL.Models
         [Required]
         [Display(Name = "UserName")]
         public String UserName { get; set; }
-        [Required]
+   
         [Display(Name = "Imie")]
         [StringLength(35, MinimumLength = 2)]
         public String Imie { get; set; }
-        [Required]
+
         [Display(Name = "Nazwisko")]
         [StringLength(35, MinimumLength = 2)]
         public String Nazwisko { get; set; }
-        [Required]
+      
         [Display(Name = "Wiek")]
         public int Wiek { get; set; }
         public virtual ICollection<Plan> Plan { get; set; }

@@ -85,7 +85,7 @@ namespace PersonalniePL.Controllers
                 Trener tr = db.Treners.Single(t => t.UserName == User.Identity.Name);
                 plan.TrenerID = tr.ID;
                 plan.Zablokowany = true;
-                plik.SaveAs(HttpContext.Server.MapPath("~/Plany/") + plan.Plik);
+                plik.SaveAs(HttpContext.Server.MapPath("~/Plany/"+plan.PodopiecznyID+"/")+ plan.Plik);
             }
             if (ModelState.IsValid)
             {

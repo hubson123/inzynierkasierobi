@@ -73,6 +73,7 @@
                 else
                 {
                     @Html.ActionLink("Napisz Wiadomosc do trenera", "Create", "Wiadomoscs", new { id = item.ID }, "")
+                    @Html.ActionLink("Dołącz do trenera", "Dolacz","Podopiecznies", new { st = User.Identity.Name, id=item.ID },"")
                 }
 
             </td>

@@ -77,7 +77,36 @@ namespace PersonalniePL.Controllers
             }
             return View(podopieczny);
         }
+        // GET: Podopiecznies/Edit/5
+        [Authorize]
+        public ActionResult Dolacz(int? id,string st)
+        {
+            if (st == null || id==null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var podopieczny = db.Podopiecznies.Where(t=> t.UserName==st);
+            ViewBag.TrenerId = new SelectList(db.Treners.Where(t => t.ID == id), "ID", "Nazwisko");
+            if (podopieczny == null)
+            {
+                return HttpNotFound();
+            }
+            return View(podopieczny.ToList());
+        }
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public ActionResult Dolacz([Bind(Include = "ID,Avatar,UserName,Imie,Nazwisko,Wiek,idTrenera")] Podopieczny podopieczny)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(podopieczny).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
 
+                return View(podopieczny);
+        }
         // POST: Podopiecznies/Edit/5
         // Aby zapewnić ochronę przed atakami polegającymi na przesyłaniu dodatkowych danych, włącz określone właściwości, z którymi chcesz utworzyć powiązania.
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.

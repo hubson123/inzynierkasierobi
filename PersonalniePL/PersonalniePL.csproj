@@ -278,6 +278,7 @@
     <Content Include="Views\Wiadomoscs\Edit.cshtml" />
     <Content Include="Views\Wiadomoscs\Index.cshtml" />
     <Content Include="Views\Plans\Odblok.cshtml" />
+    <Content Include="Views\Podopiecznies\Dolacz.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
