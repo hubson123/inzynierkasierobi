@@ -69,7 +69,7 @@ namespace PersonalniePL.Controllers
             }
             return View(trener);
         }
-
+        [Authorize]
         // GET: Treners/Create
         public ActionResult Create()
         {
@@ -92,7 +92,7 @@ namespace PersonalniePL.Controllers
 
             return View(trener);
         }
-
+        [Authorize]
         // GET: Treners/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -113,6 +113,7 @@ namespace PersonalniePL.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+
         public ActionResult Edit([Bind(Include = "ID,Avatar,UserName,Imie,Nazwisko,Wiek,LiczbaMaksPodopiecznych,Numerkonta")] Trener trener)
         {
             HttpPostedFileBase plik = Request.Files["plikzobrazkiem"];
@@ -130,6 +131,7 @@ namespace PersonalniePL.Controllers
             return View(trener);
         }
 
+        [Authorize]
         // GET: Treners/Delete/5
         public ActionResult Delete(int? id)
         {

@@ -91,7 +91,7 @@ namespace PersonalniePL.Controllers
             {
                 db.Plans.Add(plan);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Plans");
             }
 
     return View(plan);

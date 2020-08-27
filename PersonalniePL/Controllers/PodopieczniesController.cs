@@ -25,13 +25,13 @@ namespace PersonalniePL.Controllers
 
         // GET: Podopiecznies/Details/5
         [Authorize]
-        public ActionResult Details(int? id)
+        public ActionResult Details(string UserName)
         {
-            if (id == null)
+            if (UserName == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Podopieczny podopieczny = db.Podopiecznies.Find(id);
+            Podopieczny podopieczny = db.Podopiecznies.Single(t => t.UserName == UserName);
             if (podopieczny == null)
             {
                 return HttpNotFound();
@@ -102,7 +102,7 @@ namespace PersonalniePL.Controllers
             {
                 db.Entry(podopieczny).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Treners");
             }
 
                 return View(podopieczny);

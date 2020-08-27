@@ -21,6 +21,7 @@ namespace PersonalniePL.Models
         public virtual RodzajPlanu RodzajPlanu { get; set; }
         public string Plik { get; set; }
         public bool Zablokowany { get; set; }
+        public int ss { get; set; }
 
     }
 }

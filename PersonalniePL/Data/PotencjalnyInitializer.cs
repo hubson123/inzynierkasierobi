@@ -9,16 +9,17 @@ using System.Web;
 
 namespace PersonalniePL.Data
 {
-    public class PersonalnyInitializer : DropCreateDatabaseAlways<PersonalnyContext>
+    public class PersonalnyInitializer : DropCreateDatabaseIfModelChanges<PersonalnyContext>
     {
         protected override void Seed(PersonalnyContext context)
         {
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext()));
-            var userManager = new UserManager<ApplicationUser>(
-            new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+
             roleManager.Create(new IdentityRole("Adminek"));
             roleManager.Create(new IdentityRole("Trener"));
             roleManager.Create(new IdentityRole("Podopieczny"));
+
             var user = new ApplicationUser { UserName = "hubert.firek@o2.pl", Email = "hubert.firek@o2.pl" };
             string pass = "B@rdzotrudnehaslo123";
             userManager.Create(user, pass);

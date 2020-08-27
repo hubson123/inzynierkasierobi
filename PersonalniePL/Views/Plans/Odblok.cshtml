@@ -1,20 +1,9 @@
 ﻿@model PersonalniePL.Models.Plan
 
 @{
-    Layout = null;
+    ViewBag.Title = "Odblok";
 }
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Odblok</title>
-</head>
-<body>
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/jqueryval")
-    
+  
     
     @using (Html.BeginForm())
     {
@@ -51,5 +40,4 @@
     <div>
         @Html.ActionLink("Index","Index","Home","")
     </div>
-</body>
-</html>
+

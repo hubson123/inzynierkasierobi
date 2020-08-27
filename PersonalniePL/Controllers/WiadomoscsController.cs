@@ -64,9 +64,10 @@ namespace PersonalniePL.Controllers
         {
             if (ModelState.IsValid)
             {
+                wiadomosc.Autor = User.Identity.Name;
                 db.Wiadomoscs.Add(wiadomosc);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Wiadomoscs",new { UserName=User.Identity.Name});
             }
 
             ViewBag.PodopiecznyId = new SelectList(db.Podopiecznies, "ID", "Nazwisko", wiadomosc.PodopiecznyID);

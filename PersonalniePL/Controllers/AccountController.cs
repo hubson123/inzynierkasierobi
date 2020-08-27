@@ -154,9 +154,9 @@ namespace PersonalniePL.Controllers
         public async Task<ActionResult> Register(RegisterViewModel model, string UserType)
         {
             PersonalnyContext db = new PersonalnyContext();
-            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext()));
+           /* var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext()));
             roleManager.Create(new IdentityRole("Trener"));
-            roleManager.Create(new IdentityRole("Podopieczny"));
+            roleManager.Create(new IdentityRole("Podopieczny"));*/
             if (ModelState.IsValid)
             {
 
@@ -180,9 +180,9 @@ namespace PersonalniePL.Controllers
                     // await UserManager.SendEmailAsync(user.Id, "Potwierdź konto", "Potwierdź konto, klikając <a href=\"" + callbackUrl + "\">tutaj</a>");
                     if (UserType.Equals("Podopieczny"))
                     {
-                        Models.Podopieczny podopieczny = new Podopieczny { UserName = model.Email };
+                       Podopieczny podopieczny = new Podopieczny { UserName = model.Email };
                         UserManager.AddToRole(user.Id, "Podopieczny");
-                        
+                       
                         db.Podopiecznies.Add(podopieczny);
                         db.SaveChanges();
 
@@ -193,6 +193,7 @@ namespace PersonalniePL.Controllers
                     
                         UserManager.AddToRole(user.Id, "Trener");
                         Trener trener = new Trener { UserName = model.Email }; //, Category = db.Categories.First() 
+
                         db.Treners.Add(trener);
                         db.SaveChanges();
 

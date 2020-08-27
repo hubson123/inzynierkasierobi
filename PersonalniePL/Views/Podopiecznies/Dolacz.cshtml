@@ -1,20 +1,10 @@
 ﻿@model PersonalniePL.Models.Podopieczny
 
 @{
-    Layout = null;
+    ViewBag.Title = "Dolacz";
 }
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Dolacz</title>
-</head>
-<body>
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/jqueryval")
-    
     
     @using (Html.BeginForm())
     {
@@ -47,7 +37,5 @@
     }
     
     <div>
-        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("Back to List", "Index","Treners","")
     </div>
-</body>
-</html>

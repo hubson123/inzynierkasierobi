@@ -20,18 +20,31 @@
         @foreach (var item in Model)
         {
     <tr>
-        
-            <td>
-                @Html.DisplayFor(modelItem => item.Autor)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Tresc)
-            </td>
-                
 
-
+        <td>
+            @Html.DisplayFor(modelItem => item.Autor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tresc)
+        </td>
+        <td>
+            @if (item.Autor != User.Identity.Name)
+            {
+                if (User.IsInRole("Podopieczny"))
+                {
+                    @Html.ActionLink("Odpisz", "Create", "Wiadomoscs", new { id = item.TrenerID }, "")
+                }
+                if (User.IsInRole("Trener"))
+                {
+                    @Html.ActionLink("Odpisz", "Create", "Wiadomoscs", new { id = item.PodopiecznyID }, "")
+                }
+            }
+            @Html.ActionLink("Usun z listy", "Delete", "Wiadomoscs", new { id = item.Id }, "")
+        </td>
+       
     </tr>
         }
+
     </table>
 
 
