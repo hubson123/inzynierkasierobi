@@ -17,6 +17,7 @@ namespace PersonalniePL.Controllers
         private PersonalnyContext db = new PersonalnyContext();
 
         // GET: Wiadomoscs
+        [Authorize]
         public ActionResult Index(string UserName)
         {
 
@@ -25,6 +26,7 @@ namespace PersonalniePL.Controllers
         }
 
         // GET: Wiadomoscs/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -40,6 +42,7 @@ namespace PersonalniePL.Controllers
         }
 
         // GET: Wiadomoscs/Create
+        [Authorize]
         public ActionResult Create(int? id)
         {
             if (User.IsInRole("Podopieczny"))
@@ -70,12 +73,11 @@ namespace PersonalniePL.Controllers
                 return RedirectToAction("Index","Wiadomoscs",new { UserName=User.Identity.Name});
             }
 
-            ViewBag.PodopiecznyId = new SelectList(db.Podopiecznies, "ID", "Nazwisko", wiadomosc.PodopiecznyID);
-            ViewBag.TrenerId = new SelectList(db.Treners, "ID", "Nazwisko", wiadomosc.TrenerID);
             return RedirectToRoute("Index", "Treners");
         }
 
         // GET: Wiadomoscs/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -105,12 +107,12 @@ namespace PersonalniePL.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.PodopiecznyId = new SelectList(db.Podopiecznies, "ID", "Nazwisko", wiadomosc.PodopiecznyID);
-            ViewBag.TrenerId = new SelectList(db.Treners, "ID", "Nazwisko", wiadomosc.TrenerID);
+
             return View(wiadomosc);
         }
 
         // GET: Wiadomoscs/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)

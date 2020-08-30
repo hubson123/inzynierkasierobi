@@ -19,12 +19,11 @@
     <tr>
 
         <th>AVATAR</th>
-        <th>ID</th>
         <th>
             Nick
         </th>
         <th>
-            @Html.ActionLink("Sortuj po imieniu", "Index", new { sortOrder = ViewBag.ImieSortParm })
+            @Html.ActionLink("Sortuj po imieniu", "Index", new { sortOrder = ViewBag.ImieSortParm})
         </th>
         <th>
             Nazwisko
@@ -50,9 +49,7 @@
                     <img src="~/Avatary/@item.Avatar" alt="Tu powinien byc avatar" height="50px" width="50px" />
                 }
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ID)
-            </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.UserName)
             </td>

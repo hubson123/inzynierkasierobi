@@ -1,56 +1,66 @@
-﻿@model IEnumerable<PersonalniePL.Models.Podopieczny>
-
+﻿@model PagedList.IPagedList<PersonalniePL.Models.Podopieczny>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
+<h2>Podopieczni</h2>
+@using (Html.BeginForm("Index", "Podopiecznies", FormMethod.Get))
+{
 <p>
-    @Html.ActionLink("Create New", "Create")
+    Szukaj po nazwisku: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+    @Html.Hidden("UserName",User.Identity.Name )
+    <input type="submit" value="Search" />
+
 </p>
+}
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.UserName)
+            Nazwa użytkownika
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Imie)
+            @Html.ActionLink("Sortuj po imieniu", "Index", new { sortOrder = ViewBag.ImieSortParm , UserName = User.Identity.Name })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Nazwisko)
+            Nazwisko
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Wiek)
+            Wiek
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Imie)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nazwisko)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Wiek)
-        </td>
-        <td>
-            <div class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    Opcje <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                    <li>@Html.ActionLink("Rozpisz plan", "Create", "Plans", new { id = item.ID }, "") |</li>  
-                    <li> @Html.ActionLink("Details", "Details", new { id = item.ID }) |</li>
-                    <li> @Html.ActionLink("Delete", "Delete", new { id = item.ID })</li> 
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Imie)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nazwisko)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Wiek)
+            </td>
+            <td>
+                <div class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        Opcje <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>@Html.ActionLink("Rozpisz plan", "Create", "Plans", new { id = item.ID }, "") |</li>
+                        <li> @Html.ActionLink("Zakoncz wspolprace", "Delete", new { id = item.ID })</li>
+            </td>
+        </tr>
+    }
 
 </table>
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

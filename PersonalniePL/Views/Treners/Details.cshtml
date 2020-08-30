@@ -1,13 +1,13 @@
 ﻿@model PersonalniePL.Models.Trener
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Profil";
 }
 
-<h2>Details</h2>
+<h2>Profil</h2>
 
 <div>
-    <h4>Trener</h4>
+    <h4>Typ konta: Trener</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -15,6 +15,8 @@
         </dt>
 
         <dd>
+            @if (Model.Avatar is null) {
+            <p>Miejsce na twój Avatar</p>}
             @Html.DisplayFor(model => model.Avatar)
         </dd>
 
@@ -69,6 +71,5 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Edytuj profil", "Edit", new { id = Model.ID }) 
 </p>

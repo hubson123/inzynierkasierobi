@@ -8,7 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using PersonalniePL.Data;
 using PersonalniePL.Models;
-
+using PagedList;
+using System.Web.UI.WebControls;
 namespace PersonalniePL.Controllers
 {
     public class PodopieczniesController : Controller
@@ -17,10 +18,37 @@ namespace PersonalniePL.Controllers
 
         // GET: Podopiecznies
         [Authorize]
-        public ActionResult Index(string UserName)
+        public ActionResult Index(string UserName,string sortOrder, string currentFilter, string searchString, int? page)
         {
-            var podo = db.Podopiecznies.Include(z => z.Trener).Where(t => t.Trener.UserName == UserName);
-            return View(podo.ToList());
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.ImieSortParm = String.IsNullOrEmpty(sortOrder) ? "Imie_desc" : "";
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+            var treners = db.Podopiecznies.Include(z=>z.Trener).Where(t => t.Trener.UserName == UserName).ToList();
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                treners = treners.Where(t => t.Nazwisko.Contains(searchString)).ToList();
+            }
+            switch (sortOrder)
+            {
+                case "Imie_desc":
+                    treners = treners.OrderByDescending(t => t.Imie).ToList();
+                    break;
+                default:
+                    treners = treners.OrderBy(t => t.Nazwisko).ToList();
+                    break;
+            }
+            int pageSize = 2;
+            int pageNumber = (page ?? 1);
+            return View(treners.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Podopiecznies/Details/5
@@ -38,7 +66,7 @@ namespace PersonalniePL.Controllers
             }
             return View(podopieczny);
         }
-
+        [Authorize]
         // GET: Podopiecznies/Create
         public ActionResult Create()
         {

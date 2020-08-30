@@ -4,7 +4,7 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<h2>Uzupełnij swój profil</h2>
 
 @using (Html.BeginForm("Edit", "Treners", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
@@ -76,7 +76,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Wróć do profilu", "Details","Treners",new { UserName=User.Identity.Name},"")
 </div>
 
 @section Scripts {

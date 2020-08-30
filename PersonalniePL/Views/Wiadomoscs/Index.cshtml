@@ -22,7 +22,12 @@
     <tr>
 
         <td>
-            @Html.DisplayFor(modelItem => item.Autor)
+            @if (item.Autor == User.Identity.Name)
+            {
+                <p>YOU</p>
+            }
+            else
+            {@Html.DisplayFor(modelItem => item.Autor) }
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Tresc)

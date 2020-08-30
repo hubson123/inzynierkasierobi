@@ -61,7 +61,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            Dostęp do planu zablokowany - prosimy dokonać wpłaty w wysokości @item.Cena na konto @item.Trener.Numerkonta
+                           <p> Dostęp do planu zablokowany - prosimy dokonać wpłaty w wysokości @item.Cena na konto @item.Trener.Numerkonta </p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -89,8 +89,8 @@
                         <li>@Html.ActionLink("Zezwól na dostęp", "Odblok", new { id = item.Id })</li>
                     }
 
-                    <li> @Html.ActionLink("Edit", "Edit", new { id = item.Id }) </li>
-                    <li> @Html.ActionLink("Delete", "Delete", new { id = item.Id })</li>
+                    <li> @Html.ActionLink("Dokonaj zmian", "Edit", new { id = item.Id }) </li>
+                    <li> @Html.ActionLink("Usun plan", "Delete", new { id = item.Id })</li>
 
 
                 </ul>
@@ -100,3 +100,7 @@
 }
 
 </table>
+<style>
+    p {
+    color:black;}
+</style>
