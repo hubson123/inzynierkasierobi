@@ -99,6 +99,7 @@ namespace PersonalniePL.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Podopieczny podopieczny = db.Podopiecznies.Find(id);
+            ViewBag.TrenerId = new SelectList(db.Treners.Where(t => t.ID == id), "ID", "Nazwisko");
             if (podopieczny == null)
             {
                 return HttpNotFound();

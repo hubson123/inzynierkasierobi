@@ -40,5 +40,7 @@ namespace PersonalniePL.Data
 
 
         }
+
+        public System.Data.Entity.DbSet<PersonalniePL.Models.Notka> Notkas { get; set; }
     }
 }

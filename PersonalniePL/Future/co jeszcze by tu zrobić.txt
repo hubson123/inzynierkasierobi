@@ -1,3 +1,6 @@
 -> poprawa chatu(historia wiadomości)
 -> możliwość dodawania klientów jako podopiecznych
 -> poprawa formularzy
+-> dziennik
+-> interaktywny planer treningowy
+

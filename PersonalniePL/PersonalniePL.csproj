@@ -176,6 +176,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\NotkasController.cs" />
     <Compile Include="Controllers\PlansController.cs" />
     <Compile Include="Controllers\PodopieczniesController.cs" />
     <Compile Include="Controllers\TrenersController.cs" />
@@ -189,6 +190,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Mail.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Notka.cs" />
     <Compile Include="Models\Plan.cs" />
     <Compile Include="Models\Podopieczny.cs" />
     <Compile Include="Models\RodzajPlanu.cs" />
@@ -279,6 +281,11 @@
     <Content Include="Views\Wiadomoscs\Index.cshtml" />
     <Content Include="Views\Plans\Odblok.cshtml" />
     <Content Include="Views\Podopiecznies\Dolacz.cshtml" />
+    <Content Include="Views\Notkas\Create.cshtml" />
+    <Content Include="Views\Notkas\Delete.cshtml" />
+    <Content Include="Views\Notkas\Details.cshtml" />
+    <Content Include="Views\Notkas\Edit.cshtml" />
+    <Content Include="Views\Notkas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

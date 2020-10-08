@@ -18,9 +18,9 @@
 
     <tr>
 
-        <th>AVATAR</th>
+        <th>Zdjecie</th>
         <th>
-            Nick
+            Nazwa uzytkownika
         </th>
         <th>
             @Html.ActionLink("Sortuj po imieniu", "Index", new { sortOrder = ViewBag.ImieSortParm})
@@ -81,6 +81,6 @@
 </table>
 
 <br />
-Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+Strona @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) z @Model.PageCount
 
 @Html.PagedListPager(Model, page => Url.Action("Index",new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
