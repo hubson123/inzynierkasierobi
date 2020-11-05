@@ -26,33 +26,32 @@ namespace PersonalniePL.Data
             userManager.AddToRole(user.Id, "Adminek");
             userManager.AddToRole(user.Id, "Trener");
             var user1 = new ApplicationUser { UserName = "mikoa@o34.pl", Email = "mikoa@o34.pl" };
-            string pass1 = "Zaq1@WSX";
-            userManager.Create(user1, pass1);
+
+            userManager.Create(user1, pass);
             userManager.AddToRole(user1.Id, "Podopieczny");
             var user2 = new ApplicationUser { UserName = "troll@o34.pl", Email = "troll@o34.pl" };
-            string pass2 = "Zaq1@WSX";
-            userManager.Create(user2, pass2);
+
+            userManager.Create(user2, pass);
             userManager.AddToRole(user2.Id, "Podopieczny");
             var user3 = new ApplicationUser { UserName = "fog@o34.pl", Email = "fog@o34.pl" };
-            string pass3 = "Zaq1@WSX";
-            userManager.Create(user3, pass3);
+    
+            userManager.Create(user3, pass);
             userManager.AddToRole(user3.Id, "Podopieczny");
             var user4 = new ApplicationUser { UserName = "Balion@o34.pl", Email = "Balion@o34.pl" };
-            string pass4 = "Zaq1@WSX";
-            userManager.Create(user4, pass4);
+        
+            userManager.Create(user4, pass);
             userManager.AddToRole(user4.Id, "Trener");
             var user5 = new ApplicationUser { UserName = "amigo@o34.pl", Email = "amigo@o34.pl" };
-            string pass5 = "Zaq1@WSX";
-            userManager.Create(user5, pass5);
+        
+            userManager.Create(user5, pass);
             userManager.AddToRole(user5.Id, "Trener");
             context.SaveChanges();
             var user6 = new ApplicationUser {UserName = "markow@o34.pl", Email = "markow@o34.pl" };
-            string pass6 = "Zaq1@WSX";
-            userManager.Create(user6, pass6);
+         
+            userManager.Create(user6, pass);
             userManager.AddToRole(user6.Id, "Trener");
             var user7 = new ApplicationUser { UserName = "mrio@o34.pl", Email = "mrio@o34.pl" };
-            string pass7 = "Zaq1@WSX";
-            userManager.Create(user7, pass7);
+            userManager.Create(user7, pass);
             userManager.AddToRole(user7.Id, "Trener");
 
             var rodzaje = new List<RodzajPlanu> {
@@ -79,9 +78,22 @@ namespace PersonalniePL.Data
               new Podopieczny{UserName=user2.UserName,Imie="Adrianna",Nazwisko="Kowalska",Wiek=51, TrenerID=users[3].ID},
                 new Podopieczny{UserName=user3.UserName,Imie="Tomasz",Nazwisko="Andrus",Wiek=71,TrenerID=users[0].ID}
             };
+         
             podop.ForEach(r => context.Podopiecznies.Add(r));
             context.SaveChanges();
-
+            string datat = "Dec 23 2019";
+            DateTime d = DateTime.Parse(datat);
+            string datat2 = "Dec 12 2019";
+            DateTime d2 = DateTime.Parse(datat2);
+            var notki = new List<Notka> {
+            new Notka{UserName=user2.UserName,datautworzenia=d,Tresc="Jest świetnie oby tak dalej"},
+            new Notka{UserName=user1.UserName,datautworzenia=d,Tresc="Wow schudłem 3 kilo"},
+            new Notka{UserName=user5.UserName,datautworzenia=d,Tresc="Kozaaaaak"},
+            new Notka{UserName=user3.UserName,datautworzenia=d,Tresc="Miałem tydzięń załamania ale wracam na właściwe tory"},
+            new Notka{UserName=user2.UserName,datautworzenia=d2,Tresc="Będzie dobrze jestem dobrej myśli"}
+            };
+            notki.ForEach(r => context.Notkas.Add(r));
+            context.SaveChanges();
         }
     }
 }

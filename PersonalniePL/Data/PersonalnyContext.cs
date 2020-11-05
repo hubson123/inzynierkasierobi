@@ -19,6 +19,7 @@ namespace PersonalniePL.Data
         public DbSet<Plan> Plans { get; set; }
         public DbSet<RodzajPlanu> RodzajPlanus { get; set; }
         public DbSet<Wiadomosc> Wiadomoscs { get; set; }
+        public DbSet<Notka> Notkas { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -41,6 +42,5 @@ namespace PersonalniePL.Data
 
         }
 
-        public System.Data.Entity.DbSet<PersonalniePL.Models.Notka> Notkas { get; set; }
     }
 }

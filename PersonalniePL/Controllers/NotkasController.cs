@@ -16,9 +16,10 @@ namespace PersonalniePL.Controllers
         private PersonalnyContext db = new PersonalnyContext();
 
         // GET: Notkas
-        public ActionResult Index()
+        public ActionResult Index(string UserName)
         {
-            return View(db.Notkas.ToList());
+            var widok = db.Notkas.Where(m => m.UserName == UserName);
+            return View(widok.ToList());
         }
 
         // GET: Notkas/Details/5
