@@ -1,17 +1,9 @@
 ﻿@model PersonalniePL.Models.Notka
 
 @{
-    Layout = null;
+    ViewBag.Title = "Edycja wpisu";
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Edit</title>
-</head>
-<body>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
     
@@ -58,8 +50,7 @@
         </div>
     }
     
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
-</body>
-</html>
+<div>
+    @Html.ActionLink("Powrót", "Index", new { UserName = User.Identity.Name })
+</div>
+

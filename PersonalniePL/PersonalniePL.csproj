@@ -45,6 +45,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
@@ -118,12 +124,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.3\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
@@ -174,26 +174,39 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CwiczeniesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NotkasController.cs" />
     <Compile Include="Controllers\PlansController.cs" />
     <Compile Include="Controllers\PodopieczniesController.cs" />
+    <Compile Include="Controllers\PrzerwasController.cs" />
+    <Compile Include="Controllers\SeriasController.cs" />
+    <Compile Include="Controllers\SkalaRpesController.cs" />
+    <Compile Include="Controllers\TempiController.cs" />
     <Compile Include="Controllers\TrenersController.cs" />
     <Compile Include="Controllers\WiadomoscsController.cs" />
+    <Compile Include="Controllers\ZakresPowtorzensController.cs" />
     <Compile Include="Data\PersonalnyContext.cs" />
     <Compile Include="Data\PotencjalnyInitializer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Cwiczenie.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Mail.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Notka.cs" />
     <Compile Include="Models\Plan.cs" />
+    <Compile Include="Models\PlanKreator.cs" />
     <Compile Include="Models\Podopieczny.cs" />
+    <Compile Include="Models\Przerwa.cs" />
     <Compile Include="Models\RodzajPlanu.cs" />
+    <Compile Include="Models\Seria.cs" />
+    <Compile Include="Models\SkalaRpe.cs" />
+    <Compile Include="Models\Tempo.cs" />
+    <Compile Include="Models\ZakresPowtorzen.cs" />
     <Compile Include="ViewModels\StatystykiTrenerzy.cs" />
     <Compile Include="Models\Trener.cs" />
     <Compile Include="Models\Wiadomosc.cs" />
@@ -286,6 +299,36 @@
     <Content Include="Views\Notkas\Details.cshtml" />
     <Content Include="Views\Notkas\Edit.cshtml" />
     <Content Include="Views\Notkas\Index.cshtml" />
+    <Content Include="Views\ZakresPowtorzens\Create.cshtml" />
+    <Content Include="Views\ZakresPowtorzens\Delete.cshtml" />
+    <Content Include="Views\ZakresPowtorzens\Details.cshtml" />
+    <Content Include="Views\ZakresPowtorzens\Edit.cshtml" />
+    <Content Include="Views\ZakresPowtorzens\Index.cshtml" />
+    <Content Include="Views\Tempi\Create.cshtml" />
+    <Content Include="Views\Tempi\Delete.cshtml" />
+    <Content Include="Views\Tempi\Details.cshtml" />
+    <Content Include="Views\Tempi\Edit.cshtml" />
+    <Content Include="Views\Tempi\Index.cshtml" />
+    <Content Include="Views\SkalaRpes\Create.cshtml" />
+    <Content Include="Views\SkalaRpes\Delete.cshtml" />
+    <Content Include="Views\SkalaRpes\Details.cshtml" />
+    <Content Include="Views\SkalaRpes\Edit.cshtml" />
+    <Content Include="Views\SkalaRpes\Index.cshtml" />
+    <Content Include="Views\Serias\Create.cshtml" />
+    <Content Include="Views\Serias\Delete.cshtml" />
+    <Content Include="Views\Serias\Details.cshtml" />
+    <Content Include="Views\Serias\Edit.cshtml" />
+    <Content Include="Views\Serias\Index.cshtml" />
+    <Content Include="Views\Przerwas\Create.cshtml" />
+    <Content Include="Views\Przerwas\Delete.cshtml" />
+    <Content Include="Views\Przerwas\Details.cshtml" />
+    <Content Include="Views\Przerwas\Edit.cshtml" />
+    <Content Include="Views\Przerwas\Index.cshtml" />
+    <Content Include="Views\Cwiczenies\Create.cshtml" />
+    <Content Include="Views\Cwiczenies\Delete.cshtml" />
+    <Content Include="Views\Cwiczenies\Details.cshtml" />
+    <Content Include="Views\Cwiczenies\Edit.cshtml" />
+    <Content Include="Views\Cwiczenies\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

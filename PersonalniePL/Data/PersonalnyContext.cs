@@ -42,5 +42,16 @@ namespace PersonalniePL.Data
 
         }
 
+        public System.Data.Entity.DbSet<PersonalniePL.Models.ZakresPowtorzen> ZakresPowtorzens { get; set; }
+
+        public System.Data.Entity.DbSet<PersonalniePL.Models.Tempo> Tempi { get; set; }
+
+        public System.Data.Entity.DbSet<PersonalniePL.Models.SkalaRpe> SkalaRpes { get; set; }
+
+        public System.Data.Entity.DbSet<PersonalniePL.Models.Seria> Serias { get; set; }
+
+        public System.Data.Entity.DbSet<PersonalniePL.Models.Przerwa> Przerwas { get; set; }
+
+        public System.Data.Entity.DbSet<PersonalniePL.Models.Cwiczenie> Cwiczenies { get; set; }
     }
 }

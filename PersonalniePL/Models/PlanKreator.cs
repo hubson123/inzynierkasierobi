@@ -6,7 +6,7 @@ using System.Web;
 
 namespace PersonalniePL.Models
 {
-    public class Plan
+    public class PlanKreator
     {
         public int Id { get; set; }
         [Display(Name = "Trener")]
@@ -15,12 +15,15 @@ namespace PersonalniePL.Models
         public int PodopiecznyID { get; set; }
         [Display(Name = "Rodzaj")]
         public int RodzajPlanuID { get; set; }
-        public double Cena { get; set; }
+        public virtual ICollection<Cwiczenie> Cwiczenies { get; set; }
+        public virtual ICollection<Cwiczenie> Cwiczenies1 { get; set; }
+        public virtual ICollection<Cwiczenie> Cwiczenies2 { get; set; }
+        public virtual ICollection<Cwiczenie> Cwiczenies3 { get; set; }
+        public virtual ICollection<Cwiczenie> Cwiczenies4 { get; set; }
+        public virtual ICollection<Cwiczenie> Cwiczenies5 { get; set; }
+        public virtual RodzajPlanu RodzajPlanus { get; set; }
         public virtual Trener Trener { get; set; }
         public virtual Podopieczny Podopieczny { get; set; }
-        public virtual RodzajPlanu RodzajPlanu { get; set; }
-        public string Plik { get; set; }
         public bool Zablokowany { get; set; }
-
     }
 }

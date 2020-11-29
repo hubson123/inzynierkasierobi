@@ -27,6 +27,7 @@ namespace PersonalniePL.Models
         [Display(Name = "Wiek")]
         public int Wiek { get; set; }
         public virtual ICollection<Plan> Plan { get; set; }
+        public virtual ICollection<PlanKreator> PlanKreators { get; set; }
         public virtual Trener Trener { get; set; }
         public virtual ICollection<Wiadomosc> Wiadomosc { get; set; }
 

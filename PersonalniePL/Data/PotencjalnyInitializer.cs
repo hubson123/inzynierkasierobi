@@ -21,8 +21,9 @@ namespace PersonalniePL.Data
             roleManager.Create(new IdentityRole("Podopieczny"));
 
             var user = new ApplicationUser { UserName = "hubert.firek@o2.pl", Email = "hubert.firek@o2.pl" };
-            string pass = "B@rdzotrudnehaslo123";
-            userManager.Create(user, pass);
+            string pass = "zaq1@WSX";
+            string pass1 = "B@rdzotrudnehaslo123";
+            userManager.Create(user, pass1);
             userManager.AddToRole(user.Id, "Adminek");
             userManager.AddToRole(user.Id, "Trener");
             var user1 = new ApplicationUser { UserName = "mikoa@o34.pl", Email = "mikoa@o34.pl" };
