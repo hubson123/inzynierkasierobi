@@ -1,0 +1,90 @@
+﻿@model PersonalniePL.Models.Cwiczenie
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>Cwiczenie</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Trener.Avatar)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Trener.Avatar)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.PlanKreatorID)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.PlanKreatorID)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.NazwaCwiczenia)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.NazwaCwiczenia)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.IloscSerii)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.IloscSerii)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ZakresPowtorzen)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ZakresPowtorzen)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.CzasPrzerwy)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.CzasPrzerwy)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.SkalaRpes)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.SkalaRpes)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.TempoPracy)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TempoPracy)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

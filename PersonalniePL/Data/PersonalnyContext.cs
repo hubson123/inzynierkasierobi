@@ -20,7 +20,9 @@ namespace PersonalniePL.Data
         public DbSet<RodzajPlanu> RodzajPlanus { get; set; }
         public DbSet<Wiadomosc> Wiadomoscs { get; set; }
         public DbSet<Notka> Notkas { get; set; }
-
+        public DbSet<PlanKreator> PlanKreators { get; set; }
+       
+        public DbSet<Cwiczenie> Cwiczenies { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Wiadomosc>().HasRequired<Trener>(w => w.Treners)
@@ -41,6 +43,5 @@ namespace PersonalniePL.Data
 
 
         }
-
     }
 }

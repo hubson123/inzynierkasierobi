@@ -86,7 +86,7 @@ namespace PersonalniePL.Controllers
             {
                 plan.Plik = plik.FileName;
                 Trener tr = db.Treners.Single(t => t.UserName == User.Identity.Name);
-                plan.TrenerID = tr.ID;
+                plan.TrenerID = (int)tr.ID;
                 plan.Zablokowany = true;
                 plik.SaveAs(HttpContext.Server.MapPath("~/Plany/"+plan.PodopiecznyID+"/")+ plan.Plik);
             }
@@ -131,7 +131,7 @@ namespace PersonalniePL.Controllers
             {
                 plan.Plik = plik.FileName;
                 Trener tr = db.Treners.Single(t => t.UserName == User.Identity.Name);
-                plan.TrenerID = tr.ID;
+                plan.TrenerID = (int)tr.ID;
                 plik.SaveAs(HttpContext.Server.MapPath("~/Plany/") + plan.Podopieczny.UserName +"/"+ plan.Plik);
             }
             if (ModelState.IsValid)

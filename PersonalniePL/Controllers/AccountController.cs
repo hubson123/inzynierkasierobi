@@ -180,9 +180,10 @@ namespace PersonalniePL.Controllers
                     // await UserManager.SendEmailAsync(user.Id, "Potwierdź konto", "Potwierdź konto, klikając <a href=\"" + callbackUrl + "\">tutaj</a>");
                     if (UserType.Equals("Podopieczny"))
                     {
-                       Podopieczny podopieczny = new Podopieczny { UserName = model.Email };
+
+                       Podopieczny podopieczny = new Podopieczny {UserName = model.Email, TrenerID=1};
                         UserManager.AddToRole(user.Id, "Podopieczny");
-                       
+
                         db.Podopiecznies.Add(podopieczny);
                         db.SaveChanges();
 

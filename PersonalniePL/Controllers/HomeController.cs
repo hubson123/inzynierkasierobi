@@ -21,7 +21,7 @@ namespace PersonalniePL.Controllers
         public ActionResult About()
         {
             IQueryable<StatystykiTrenerzy> dane = db.Treners.SelectMany(t => t.Podopiecznies).GroupBy(t => t.Trener)
-                .Select(m => new StatystykiTrenerzy() { IDTren = m.Key, Ilu = m.Count() });
+                            .Select(m => new StatystykiTrenerzy() { IDTren = m.Key, Ilu = m.Count() });
 
             return View(dane.ToList());
 
