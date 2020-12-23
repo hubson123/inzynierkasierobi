@@ -1,11 +1,11 @@
 ﻿@model PagedList.IPagedList<PersonalniePL.Models.Trener>
-@using.PagedList.MVC;
+@using PagedList.Mvc;
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Lista trenerów</h2>
 
 @using (Html.BeginForm("Index", "Treners", FormMethod.Get))
 {
@@ -18,13 +18,12 @@
 
     <tr>
 
-        <th>AVATAR</th>
-        <th>ID</th>
+        <th>Zdjecie</th>
         <th>
-            Nick
+            Nazwa uzytkownika
         </th>
         <th>
-            @Html.ActionLink("Sortuj po imieniu", "Index", new { sortOrder = ViewBag.ImieSortParm })
+            @Html.ActionLink("Sortuj po imieniu", "Index", new { sortOrder = ViewBag.ImieSortParm})
         </th>
         <th>
             Nazwisko
@@ -43,15 +42,14 @@
             <td>
                 @if (item.Avatar is null)
                 {
-                    <img src="~/Avatary/avi.png" alt="Tu powinien byc avatar" height="50px" width="50px" />}
+                    <img src="~/Avatary/avi.png" alt="Tu powinien byc avatar" height="50px" width="50px" />
+                }
                 else
                 {
-                    <img src="~/Avatary/@item.Avatar" alt="Tu powinien byc avatar" height="50px" width="50px" />}
+                    <img src="~/Avatary/@item.Avatar" alt="Tu powinien byc avatar" height="50px" width="50px" />
+                }
+            </td>
 
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ID)
-            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.UserName)
             </td>
@@ -65,10 +63,16 @@
                 @Html.DisplayFor(modelItem => item.LiczbaMaksPodopiecznych)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", "Treners", new { id = item.ID }, "") |
-                @Html.ActionLink("Details", "Details", "Treners", new { UserName = item.UserName }, "") |
-                @Html.ActionLink("Delete", "Delete", "Treners", new { id = item.ID }, "") |
-                @Html.ActionLink("Napisz Wiadomosc do trenera", "Create", "Wiadomoscs", new { id = item.ID }, "")
+                @if (item.LiczbaMaksPodopiecznych == @item.Podopiecznies.Count())
+                {
+                    <h6>Przykro mi ale mam już komplet podopiecznych. </h6>
+                }
+                else
+                {
+                    @Html.ActionLink("Napisz Wiadomosc do trenera", "Create", "Wiadomoscs", new { id = item.ID }, "")
+                    @Html.ActionLink("Dołącz do trenera", "Dolacz","Podopiecznies", new { st = User.Identity.Name, id=item.ID },"")
+                }
+
             </td>
 
         </tr>
@@ -77,7 +81,6 @@
 </table>
 
 <br />
-Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+Strona @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) z @Model.PageCount
 
-@Html.PagedListPager(Model, page => Url.Action("Index",
-    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+@Html.PagedListPager(Model, page => Url.Action("Index",new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

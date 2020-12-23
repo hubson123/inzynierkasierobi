@@ -45,6 +45,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
@@ -118,12 +124,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.3\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
@@ -174,8 +174,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CwiczeniesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\NotkasController.cs" />
+    <Compile Include="Controllers\PlanKreatorsController.cs" />
     <Compile Include="Controllers\PlansController.cs" />
     <Compile Include="Controllers\PodopieczniesController.cs" />
     <Compile Include="Controllers\TrenersController.cs" />
@@ -185,13 +188,22 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Cwiczenie.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Mail.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Notka.cs" />
     <Compile Include="Models\Plan.cs" />
+    <Compile Include="Models\PlanKreator.cs" />
     <Compile Include="Models\Podopieczny.cs" />
     <Compile Include="Models\RodzajPlanu.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\StatystykiTrenerzy.cs" />
     <Compile Include="Models\Trener.cs" />
     <Compile Include="Models\Wiadomosc.cs" />
@@ -210,7 +222,6 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="zdj\img1.jpg" />
     <Content Include="zdj\img2.jpg" />
     <Content Include="zdj\img3.jpg" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -278,6 +289,23 @@
     <Content Include="Views\Wiadomoscs\Details.cshtml" />
     <Content Include="Views\Wiadomoscs\Edit.cshtml" />
     <Content Include="Views\Wiadomoscs\Index.cshtml" />
+    <Content Include="Views\Plans\Odblok.cshtml" />
+    <Content Include="Views\Podopiecznies\Dolacz.cshtml" />
+    <Content Include="Views\Notkas\Create.cshtml" />
+    <Content Include="Views\Notkas\Delete.cshtml" />
+    <Content Include="Views\Notkas\Details.cshtml" />
+    <Content Include="Views\Notkas\Edit.cshtml" />
+    <Content Include="Views\Notkas\Index.cshtml" />
+    <Content Include="Views\Cwiczenies\Create.cshtml" />
+    <Content Include="Views\Cwiczenies\Delete.cshtml" />
+    <Content Include="Views\Cwiczenies\Details.cshtml" />
+    <Content Include="Views\Cwiczenies\Edit.cshtml" />
+    <Content Include="Views\Cwiczenies\Index.cshtml" />
+    <Content Include="Views\PlanKreators\Create.cshtml" />
+    <Content Include="Views\PlanKreators\Delete.cshtml" />
+    <Content Include="Views\PlanKreators\Details.cshtml" />
+    <Content Include="Views\PlanKreators\Edit.cshtml" />
+    <Content Include="Views\PlanKreators\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -296,6 +324,12 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,0 +1,112 @@
+﻿@model PersonalniePL.Models.PlanKreator
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+<body>
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>PlanKreator</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Podopieczny.Avatar)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Podopieczny.Avatar)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.RodzajPlanus.Nazwa)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.RodzajPlanus.Nazwa)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Trener.Avatar)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Trener.Avatar)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.CwiczenieID)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.CwiczenieID)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Cwiczenie1ID)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Cwiczenie1ID)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Cwiczenie2ID)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Cwiczenie2ID)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Cwiczenie3ID)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Cwiczenie3ID)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Cwiczenie4ID)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Cwiczenie4ID)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Cwiczenie5ID)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Cwiczenie5ID)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Zablokowany)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Zablokowany)
+            </dd>
+    
+        </dl>
+    
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+    
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+</body>
+</html>

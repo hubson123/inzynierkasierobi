@@ -1,0 +1,9 @@
+axis 4x4x4 algo:
+center last: rUr'U'r'Fr2U'r'U'rUr'
+flip edge: 2R2 B2 U2 2L U2 2R' U2 2R U2 F2 2R F2 2L' B2 2R2
+
+webinaria:
+https://www.youtube.com/watch?v=LZMMw2WbEz8
+
+pogokieng
+https://www.youtube.com/watch?v=CnUSHH8Hf1Y&feature=youtu.be&fbclid=IwAR3hWMBgphz9iLu_SlajPLZdaqzZOBkXWT8z5ua9m4VNPUAM1blvmD3jLjc

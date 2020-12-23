@@ -153,9 +153,10 @@ namespace PersonalniePL.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model, string UserType)
         {
-            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext()));
+            PersonalnyContext db = new PersonalnyContext();
+           /* var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext()));
             roleManager.Create(new IdentityRole("Trener"));
-            roleManager.Create(new IdentityRole("Podopieczny"));
+            roleManager.Create(new IdentityRole("Podopieczny"));*/
             if (ModelState.IsValid)
             {
 
@@ -179,9 +180,10 @@ namespace PersonalniePL.Controllers
                     // await UserManager.SendEmailAsync(user.Id, "Potwierdź konto", "Potwierdź konto, klikając <a href=\"" + callbackUrl + "\">tutaj</a>");
                     if (UserType.Equals("Podopieczny"))
                     {
-                        Models.Podopieczny podopieczny = new Models.Podopieczny { UserName = model.Email };
+
+                       Podopieczny podopieczny = new Podopieczny {UserName = model.Email, TrenerID=1};
                         UserManager.AddToRole(user.Id, "Podopieczny");
-                        PersonalnyContext db = new PersonalnyContext();
+
                         db.Podopiecznies.Add(podopieczny);
                         db.SaveChanges();
 
@@ -189,9 +191,10 @@ namespace PersonalniePL.Controllers
                     }
                     else if (UserType.Equals("Trener"))
                     {
-                        PersonalnyContext db = new PersonalnyContext();
+                    
                         UserManager.AddToRole(user.Id, "Trener");
                         Trener trener = new Trener { UserName = model.Email }; //, Category = db.Categories.First() 
+
                         db.Treners.Add(trener);
                         db.SaveChanges();
 

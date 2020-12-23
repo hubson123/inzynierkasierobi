@@ -1,24 +1,21 @@
 ﻿@model IEnumerable<PersonalniePL.Models.Plan>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Plany treningowe";
 }
 
-<h2>Index</h2>
+<h2>Plany Treningowe</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Podopieczny.Avatar)
+            @Html.DisplayNameFor(model => model.Podopieczny.Nazwisko)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.RodzajPlanu.Nazwa)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Trener.Avatar)
+            @Html.DisplayNameFor(model => model.Trener.Nazwisko)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Cena)
@@ -26,74 +23,84 @@
         <th>
             @Html.DisplayNameFor(model => model.Plik)
         </th>
-        @if (Context.User.IsInRole("Trener")){
+        @if (User.IsInRole("Trener")){
             <th>Opcje
                 </th> }
         
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Podopieczny.Avatar)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RodzajPlanu.Nazwa)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Trener.Avatar)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cena)
-        </td>
-        <td>
-            @if (item.Zablokowany == true)
-            {
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                   Oto twój plan
-                </button>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Podopieczny.Nazwisko)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.RodzajPlanu.Nazwa)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Trener.Nazwisko)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Cena)
+    </td>
+    <td>
+        @if (item.Zablokowany == true)
+        {
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                Oto twój plan
+            </button>
 
-                <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                               Dostęp do planu zablokowany - prosimy dokonać wpłaty w wysokości @item.Cena na konto @item.Trener.Numerkonta
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                           <p> Dostęp do planu zablokowany - prosimy dokonać wpłaty w wysokości @item.Cena na konto @item.Trener.Numerkonta </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
-            }
-            else
-            {
-                <a href="~/Plany/" @item.Plik>Oto twój plan</a>
-            }
+            </div>
+        }
+        else
+        {
+            <a href="~/Plany/@item.PodopiecznyID/@item.Plik">Oto twój plan</a>
+        }
 
-        </td>
+    </td>
+    @if (User.IsInRole("Trener"))
+    {
         <td>
             <div class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                     Opcje <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                    <li> @Html.ActionLink("Edit", "Edit", new { id = item.Id }) </li>
-                <li>  @Html.ActionLink("Details", "Details", new { id = item.Id }) </li>
-                <li> @Html.ActionLink("Delete", "Delete", new { id = item.Id })</li>
+                    @if (item.Zablokowany == true)
+                    {
+                        <li>@Html.ActionLink("Zezwól na dostęp", "Odblok", new { id = item.Id })</li>
+                    }
+
+                    <li> @Html.ActionLink("Dokonaj zmian", "Edit", new { id = item.Id }) </li>
+                    <li> @Html.ActionLink("Usun plan", "Delete", new { id = item.Id })</li>
 
 
                 </ul>
             </div>
-            </td>
+        </td>}
     </tr>
 }
 
 </table>
+<style>
+    p {
+    color:black;}
+</style>

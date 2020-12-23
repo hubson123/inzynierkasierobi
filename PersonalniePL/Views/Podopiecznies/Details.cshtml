@@ -4,26 +4,22 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Profil</h2>
 
 <div>
-    <h4>Podopieczny</h4>
+    <h4>Typ konta: Podopieczny</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Trener.Avatar)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Trener.Avatar)
-        </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.Avatar)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Avatar)
+            @if(Model.Avatar is null)
+            {
+                <p>Miejsce na Twoje zdjęcie</p>
+            }
         </dd>
 
         <dt>
@@ -61,6 +57,5 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) 
 </p>

@@ -1,0 +1,23 @@
+﻿@model IEnumerable<PersonalniePL.Models.Notka>
+
+@{
+    ViewBag.Title = "Dziennik treningowy";
+}
+
+<h2>Dziennik treningowy</h2>
+<table class="table">
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tresc)
+                @Html.DisplayFor(modelItem => item.datautworzenia)
+            </td>
+            <td>
+                @Html.ActionLink("Edytuj", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Usun", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>

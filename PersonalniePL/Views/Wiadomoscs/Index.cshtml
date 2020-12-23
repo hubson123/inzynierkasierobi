@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<PersonalniePL.Models.Wiadomosc>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Skrzynka";
 }
 
 <h2>Wiadomości</h2>
@@ -20,41 +20,39 @@
         @foreach (var item in Model)
         {
     <tr>
-        @if (item.Autor != User.Identity.Name)
-        {
-            <td>
-                @Html.DisplayFor(modelItem => item.Autor)
-            </td>
-            <td>
-                <button id="btn1">Pokaż wiadomości</button>
-            </td>
-        }
 
-
-        @foreach (var item1 in Model)
-        {
-            @if (item1.Autor == item.Autor && item1.Treners.UserName==User.Identity.Name )
+        <td>
+            @if (item.Autor == User.Identity.Name)
             {
-                <div id="niezmyslam">
-
-                    @Html.DisplayFor(modelItem => item1.Tresc)
-
-                </div>
+                <p>YOU</p>
             }
-
-        }
+            else
+            {@Html.DisplayFor(modelItem => item.Autor) }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tresc)
+        </td>
+        <td>
+            @if (item.Autor != User.Identity.Name)
+            {
+                if (User.IsInRole("Podopieczny"))
+                {
+                    @Html.ActionLink("Odpisz", "Create", "Wiadomoscs", new { id = item.TrenerID }, "")
+                }
+                if (User.IsInRole("Trener"))
+                {
+                    @Html.ActionLink("Odpisz", "Create", "Wiadomoscs", new { id = item.PodopiecznyID }, "")
+                }
+            }
+            @Html.ActionLink("Usun z listy", "Delete", "Wiadomoscs", new { id = item.Id }, "")
+        </td>
+       
     </tr>
         }
+
     </table>
 
 
 </div>
-<script>
-    $(document).ready(function () {
-        $("#niezmyslam").hide();
-        $("#btn1").click(function () {
-            $("#niezmyslam").show();
-        });
-    });
-</script>
+
 

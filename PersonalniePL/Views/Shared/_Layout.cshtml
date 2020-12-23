@@ -7,7 +7,11 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
+    <style>
+        body {
+            background-color: dimgrey;
+        }
+    </style>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -23,7 +27,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Strona główna", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Informacje", "About", "Home")</li>
+                    <li>@Html.ActionLink("Statystyki strony", "About", "Home")</li>
                     <li>@Html.ActionLink("Kontakt", "Contact", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
@@ -34,7 +38,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Moja aplikacja ASP.NET</p>
+            <p>&copy; Hubert Firek @DateTime.Now.Year - PersonalniePL </p>
         </footer>
     </div>
 
@@ -42,4 +46,11 @@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
+<style>
+    body{
+        color:whitesmoke;
+    }
+    a {
+    color: navajowhite;}
+</style>
 </html>
