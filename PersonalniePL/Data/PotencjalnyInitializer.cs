@@ -80,9 +80,26 @@ namespace PersonalniePL.Data
               new Podopieczny{UserName=user2.UserName,Imie="Adrianna",Nazwisko="Kowalska",Wiek=51, TrenerID=users[3].ID},
                 new Podopieczny{UserName=user3.UserName,Imie="Tomasz",Nazwisko="Andrus",Wiek=71,TrenerID=users[2].ID}
             };
-
             podop.ForEach(r => context.Podopiecznies.Add(r));
             context.SaveChanges();
+
+
+            var cw = new List<Cwiczenie> {
+            new Cwiczenie{NazwaCwiczenia="Martwy ciąg klasyczny",TrenerID=users[2].ID,TempoPracy=1101,ZakresPowtorzen=5,IloscSerii=5,CzasPrzerwy="5 minut",SkalaRpes=9.5},
+            new Cwiczenie{NazwaCwiczenia="Wyciskanie sztangi na ławce płaskiej",TrenerID=users[2].ID,TempoPracy=1111,ZakresPowtorzen=6,IloscSerii=4,CzasPrzerwy="3 minuty",SkalaRpes=8.0},
+            new Cwiczenie{NazwaCwiczenia="Martwy ciąg klasyczny",TrenerID=users[3].ID,TempoPracy=1121,ZakresPowtorzen=3,IloscSerii=7,CzasPrzerwy="4 minuty",SkalaRpes=7.0},
+            new Cwiczenie{NazwaCwiczenia="Rozpiętki z hantlami na ławce płaskiej",TrenerID=users[3].ID,TempoPracy=1101,ZakresPowtorzen=8,IloscSerii=4,CzasPrzerwy="75 sekund",SkalaRpes=7.5},
+            new Cwiczenie{NazwaCwiczenia="Martwy ciąg sumo",TrenerID=users[2].ID,TempoPracy=1111,ZakresPowtorzen=5,IloscSerii=5,CzasPrzerwy="4 minuty",SkalaRpes=9.0},
+            new Cwiczenie{NazwaCwiczenia="Przestraszona wrona",TrenerID=users[2].ID,TempoPracy=0101,ZakresPowtorzen=15,IloscSerii=2,CzasPrzerwy="35 sekund",SkalaRpes=6.5},
+            new Cwiczenie{NazwaCwiczenia="Glute bridge",TrenerID=users[2].ID,TempoPracy=1100,ZakresPowtorzen=5,IloscSerii=4,CzasPrzerwy="3 minuty",SkalaRpes=8.5},
+            new Cwiczenie{NazwaCwiczenia="Hip thrust",TrenerID=users[3].ID,TempoPracy=1101,ZakresPowtorzen=10,IloscSerii=4,CzasPrzerwy="50 sekund",SkalaRpes=7.0},
+            new Cwiczenie{NazwaCwiczenia="Przysiad",TrenerID=users[2].ID,TempoPracy=1303,ZakresPowtorzen=5,IloscSerii=5,CzasPrzerwy="2 minuty",SkalaRpes=8.0},
+            new Cwiczenie{NazwaCwiczenia="Wyciskanie żolnierskie",TrenerID=users[3].ID,TempoPracy=1111,ZakresPowtorzen=6,IloscSerii=5,CzasPrzerwy="60 sekund",SkalaRpes=9.5},
+            };
+
+            cw.ForEach(r => context.Cwiczenies.Add(r));
+            context.SaveChanges();
+
             string datat = "Dec 23 2019";
             DateTime d = DateTime.Parse(datat);
             string datat2 = "Dec 12 2019";

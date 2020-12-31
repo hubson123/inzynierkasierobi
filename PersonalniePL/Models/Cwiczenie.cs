@@ -9,8 +9,7 @@ namespace PersonalniePL.Models
     {
         public int Id { get; set; }
         public int TrenerID { get; set; }
-        public int PlanKreatorID { get; set; }
-        public virtual Trener Trener { get; set; }
+       public virtual Trener Trener { get; set; }
         public virtual ICollection<PlanKreator> PlanKreator { get; set; }
         public string NazwaCwiczenia { get; set; }
         public int IloscSerii { get; set; }

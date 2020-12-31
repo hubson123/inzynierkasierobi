@@ -97,7 +97,7 @@ namespace PersonalniePL.Controllers
                 return RedirectToAction("Index","Plans");
             }
 
-    return View(plan);
+            return View(plan);
         }
 
         // GET: Plans/Edit/5

@@ -16,9 +16,9 @@ namespace PersonalniePL.Controllers
         private PersonalnyContext db = new PersonalnyContext();
 
         // GET: PlanKreators
-        public ActionResult Index()
+        public ActionResult Index(string UserName)
         {
-            var planKreators = db.PlanKreators.Include(p => p.Podopieczny).Include(p => p.RodzajPlanus).Include(p => p.Trener);
+            var planKreators = db.PlanKreators.Include(p => p.Podopieczny).Include(p => p.RodzajPlanus).Include(p => p.Trener).Where(t => t.Trener.UserName == UserName || t.Podopieczny.UserName == UserName);
             return View(planKreators.ToList());
         }
 
@@ -40,9 +40,10 @@ namespace PersonalniePL.Controllers
         // GET: PlanKreators/Create
         public ActionResult Create()
         {
-            ViewBag.PodopiecznyID = new SelectList(db.Podopiecznies, "ID", "Avatar");
+            ViewBag.PodopiecznyID = new SelectList(db.Podopiecznies, "ID", "Nazwisko");
             ViewBag.RodzajPlanuID = new SelectList(db.RodzajPlanus, "Id", "Nazwa");
-            ViewBag.TrenerID = new SelectList(db.Treners, "ID", "Avatar");
+            ViewBag.TrenerID = new SelectList(db.Treners, "ID", "Nazwisko");
+            ViewBag.CwiczenieID = new SelectList(db.Cwiczenies, "Id", "NazwaCwiczenia");
             return View();
         }
 
@@ -57,12 +58,14 @@ namespace PersonalniePL.Controllers
             {
                 db.PlanKreators.Add(planKreator);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "PlanKreators", new { UserName = User.Identity.Name });
+
             }
 
-            ViewBag.PodopiecznyID = new SelectList(db.Podopiecznies, "ID", "Avatar", planKreator.PodopiecznyID);
-            ViewBag.RodzajPlanuID = new SelectList(db.RodzajPlanus, "Id", "Nazwa", planKreator.RodzajPlanuID);
-            ViewBag.TrenerID = new SelectList(db.Treners, "ID", "Avatar", planKreator.TrenerID);
+            ViewBag.PodopiecznyID = new SelectList(db.Podopiecznies, "ID", "Nazwisko");
+            ViewBag.RodzajPlanuID = new SelectList(db.RodzajPlanus, "Id", "Nazwa");
+            ViewBag.CwiczenieID = new SelectList(db.Cwiczenies, "Id", "NazwaCwiczenia");
+            ViewBag.TrenerID = new SelectList(db.Treners, "ID", "Nazwisko");
             return View(planKreator);
         }
 
@@ -78,9 +81,10 @@ namespace PersonalniePL.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.PodopiecznyID = new SelectList(db.Podopiecznies, "ID", "Avatar", planKreator.PodopiecznyID);
-            ViewBag.RodzajPlanuID = new SelectList(db.RodzajPlanus, "Id", "Nazwa", planKreator.RodzajPlanuID);
-            ViewBag.TrenerID = new SelectList(db.Treners, "ID", "Avatar", planKreator.TrenerID);
+            ViewBag.PodopiecznyID = new SelectList(db.Podopiecznies, "ID", "Nazwisko");
+            ViewBag.RodzajPlanuID = new SelectList(db.RodzajPlanus, "Id", "Nazwa");
+            ViewBag.CwiczenieID = new SelectList(db.Cwiczenies, "Id", "NazwaCwiczenia");
+            ViewBag.TrenerID = new SelectList(db.Treners, "ID", "Nazwisko");
             return View(planKreator);
         }
 
@@ -95,11 +99,12 @@ namespace PersonalniePL.Controllers
             {
                 db.Entry(planKreator).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "PlanKreators", new { UserName = User.Identity.Name });
             }
-            ViewBag.PodopiecznyID = new SelectList(db.Podopiecznies, "ID", "Avatar", planKreator.PodopiecznyID);
-            ViewBag.RodzajPlanuID = new SelectList(db.RodzajPlanus, "Id", "Nazwa", planKreator.RodzajPlanuID);
-            ViewBag.TrenerID = new SelectList(db.Treners, "ID", "Avatar", planKreator.TrenerID);
+            ViewBag.PodopiecznyID = new SelectList(db.Podopiecznies, "ID", "Nazwisko");
+            ViewBag.RodzajPlanuID = new SelectList(db.RodzajPlanus, "Id", "Nazwa");
+            ViewBag.CwiczenieID = new SelectList(db.Cwiczenies, "Id", "NazwaCwiczenia");
+            ViewBag.TrenerID = new SelectList(db.Treners, "ID", "Nazwisko");
             return View(planKreator);
         }
 
@@ -126,7 +131,8 @@ namespace PersonalniePL.Controllers
             PlanKreator planKreator = db.PlanKreators.Find(id);
             db.PlanKreators.Remove(planKreator);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "PlanKreators", new { UserName = User.Identity.Name });
+
         }
 
         protected override void Dispose(bool disposing)
