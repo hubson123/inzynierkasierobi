@@ -30,6 +30,7 @@ namespace PersonalniePL.Models
         public virtual RodzajPlanu RodzajPlanus { get; set; }
         public virtual Trener Trener { get; set; }
         public virtual Podopieczny Podopieczny { get; set; }
+        public double Cena { get; set; }
         public bool Zablokowany { get; set; }
     }
 }
