@@ -1,13 +1,8 @@
 ﻿@model PersonalniePL.Models.PlanKreator
 
 @{
-    Layout = null;
+    ViewBag.Title = "Utworz plan na platformie";
 }
-
-
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/jqueryval")
-
 
 @using (Html.BeginForm())
 {
@@ -107,7 +102,7 @@
     </div>
 }
 <div>
-    @Html.ActionLink("Brakuje ćwiczeń? Utwórz nowe", "Create","Cwiczenies", new { UserName = User.Identity.Name }, "")
+    @Html.ActionLink("Brakuje ćwiczeń? Utwórz nowe", "Create", "Cwiczenies", new { UserName = User.Identity.Name }, "")
 </div>
 <div>
     @Html.ActionLink("Back to List", "Index", new { UserName = User.Identity.Name }, "")
