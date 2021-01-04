@@ -18,8 +18,7 @@ namespace PersonalniePL.Controllers
         // GET: Cwiczenies
         public ActionResult Index()
         {
-            var cwiczenies = db.Cwiczenies.Include(c => c.Trener);
-            return View(cwiczenies.ToList());
+           return View();
         }
 
         // GET: Cwiczenies/Details/5
@@ -40,8 +39,7 @@ namespace PersonalniePL.Controllers
         // GET: Cwiczenies/Create
         public ActionResult Create()
         {
-            ViewBag.TrenerID = new SelectList(db.Treners, "ID", "Avatar");
-            return View();
+          return View();
         }
 
         // POST: Cwiczenies/Create
@@ -49,7 +47,7 @@ namespace PersonalniePL.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,TrenerID,PlanKreatorID,NazwaCwiczenia,IloscSerii,ZakresPowtorzen,CzasPrzerwy,SkalaRpes,TempoPracy")] Cwiczenie cwiczenie)
+        public ActionResult Create([Bind(Include = "Id,NazwaCwiczenia,IloscSerii,ZakresPowtorzen,CzasPrzerwy,SkalaRpes,TempoPracy")] Cwiczenie cwiczenie)
         {
             if (ModelState.IsValid)
             {
@@ -58,8 +56,7 @@ namespace PersonalniePL.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.TrenerID = new SelectList(db.Treners, "ID", "Avatar", cwiczenie.TrenerID);
-            return View(cwiczenie);
+      return View(cwiczenie);
         }
 
         // GET: Cwiczenies/Edit/5
@@ -74,8 +71,7 @@ namespace PersonalniePL.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.TrenerID = new SelectList(db.Treners, "ID", "Avatar", cwiczenie.TrenerID);
-            return View(cwiczenie);
+      return View(cwiczenie);
         }
 
         // POST: Cwiczenies/Edit/5
@@ -83,7 +79,7 @@ namespace PersonalniePL.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,TrenerID,PlanKreatorID,NazwaCwiczenia,IloscSerii,ZakresPowtorzen,CzasPrzerwy,SkalaRpes,TempoPracy")] Cwiczenie cwiczenie)
+        public ActionResult Edit([Bind(Include = "Id,NazwaCwiczenia,IloscSerii,ZakresPowtorzen,CzasPrzerwy,SkalaRpes,TempoPracy")] Cwiczenie cwiczenie)
         {
             if (ModelState.IsValid)
             {
@@ -91,8 +87,7 @@ namespace PersonalniePL.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.TrenerID = new SelectList(db.Treners, "ID", "Avatar", cwiczenie.TrenerID);
-            return View(cwiczenie);
+      return View(cwiczenie);
         }
 
         // GET: Cwiczenies/Delete/5

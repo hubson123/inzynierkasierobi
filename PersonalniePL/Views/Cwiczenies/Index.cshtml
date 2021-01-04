@@ -17,12 +17,8 @@
     </p>
     <table class="table">
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Trener.Avatar)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PlanKreatorID)
-            </th>
+      
+           
             <th>
                 @Html.DisplayNameFor(model => model.NazwaCwiczenia)
             </th>
@@ -46,12 +42,7 @@
     
     @foreach (var item in Model) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Trener.Avatar)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PlanKreatorID)
-            </td>
+        
             <td>
                 @Html.DisplayFor(modelItem => item.NazwaCwiczenia)
             </td>

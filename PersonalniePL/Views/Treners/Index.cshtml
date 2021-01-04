@@ -29,7 +29,7 @@
             Nazwisko
         </th>
         <th>
-            @Html.ActionLink("Sortuj po liczbie", "Index", new { sortOrder = ViewBag.LiczbaMaksPodopiecznychSortParm })
+            @Html.ActionLink("Sortuj po liczbie podopiecznych", "Index", new { sortOrder = ViewBag.LiczbaMaksPodopiecznychSortParm })
         </th>
         <th>
             Akcja
@@ -39,6 +39,8 @@
     @foreach (var item in Model)
     {
         <tr>
+            @if (item.ID > 1)
+            {
             <td>
                 @if (item.Avatar is null)
                 {
@@ -69,12 +71,12 @@
                 }
                 else
                 {
-                    @Html.ActionLink("Napisz Wiadomosc do trenera", "Create", "Wiadomoscs", new { id = item.ID }, "")
-                    @Html.ActionLink("Dołącz do trenera", "Dolacz","Podopiecznies", new { st = User.Identity.Name, id=item.ID },"")
+                    @Html.ActionLink("1. Napisz Wiadomosc do trenera  ", "Create", "Wiadomoscs", new { id = item.ID }, "")
+                    @Html.ActionLink("  2. Dołącz do trenera", "Dolacz", "Podopiecznies", new { st = User.Identity.Name, id = item.ID }, "")
                 }
 
             </td>
-
+            }
         </tr>
     }
 

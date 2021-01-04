@@ -38,11 +38,11 @@ namespace PersonalniePL.Controllers
         }
 
         // GET: PlanKreators/Create
-        public ActionResult Create()
+        public ActionResult Create(string UserName)
         {
             ViewBag.PodopiecznyID = new SelectList(db.Podopiecznies, "ID", "Nazwisko");
             ViewBag.RodzajPlanuID = new SelectList(db.RodzajPlanus, "Id", "Nazwa");
-            ViewBag.TrenerID = new SelectList(db.Treners, "ID", "Nazwisko");
+            ViewBag.TrenerID = new SelectList(db.Treners.Where(t=>t.UserName==UserName), "ID", "Nazwisko");
             ViewBag.CwiczenieID = new SelectList(db.Cwiczenies, "Id", "NazwaCwiczenia");
             return View();
         }

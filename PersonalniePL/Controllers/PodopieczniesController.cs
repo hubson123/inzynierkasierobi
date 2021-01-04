@@ -154,7 +154,7 @@ namespace PersonalniePL.Controllers
                 }
                 db.Entry(podopieczny).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Home");
             }
             return View(podopieczny);
         }

@@ -9,32 +9,15 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Podopieczny.Avatar)
+            @Html.DisplayNameFor(model => model.Podopieczny.Nazwisko)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Podopieczny.Imie)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.RodzajPlanus.Nazwa)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Trener.Avatar)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CwiczenieID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Cwiczenie1ID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Cwiczenie2ID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Cwiczenie3ID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Cwiczenie4ID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Cwiczenie5ID)
-        </th>
+       
         <th>
             @Html.DisplayNameFor(model => model.Zablokowany)
         </th>
@@ -82,7 +65,7 @@
                 }
                 else
                 {
-                    <a href="~/Plany/@item.PodopiecznyID/@item.Id">Oto twój plan</a>
+            @Html.ActionLink("Oto Twój plan", "Details", new { id = item.Id }) 
                 }
 
             </td>
@@ -110,11 +93,7 @@
       
     
 
-    <td>
-        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-    </td>
+    
     </tr>
     }
 

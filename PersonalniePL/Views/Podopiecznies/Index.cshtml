@@ -53,9 +53,10 @@
                         Opcje <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li>@Html.ActionLink("Rozpisz plan", "Create", "Plans", new { id = item.ID }, "") |</li>
-                        <li> @Html.ActionLink("Zakoncz wspolprace", "Delete", new { id = item.ID })</li>
-            </td>
+                        <li>@Html.ActionLink("Prześlij plan", "Create", "Plans", new { id = item.ID }, "") |</li>
+                        <li>@Html.ActionLink("Rozpisz plan na platformie", "Create", "PlanKreators", new { id = item.ID }, "") |</li>
+                        <li> @Html.ActionLink("Zakoncz wspolprace", "Delete", new { id = item.ID })</li></ul></div>
+</td>
         </tr>
     }
 

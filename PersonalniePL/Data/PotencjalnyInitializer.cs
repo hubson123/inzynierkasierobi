@@ -17,8 +17,12 @@ namespace PersonalniePL.Data
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
 
             roleManager.Create(new IdentityRole("Trener"));
+            roleManager.Create(new IdentityRole("Admin"));
             roleManager.Create(new IdentityRole("Podopieczny"));
-
+            var us = new ApplicationUser { UserName = "Admin", Email = "hubert.firek@o2.pl" };
+            string p = "123H@sloadmina";
+            userManager.Create(us, p);
+            userManager.AddToRole(us.Id, "Admin");
             var user = new ApplicationUser { UserName = "AktualniebezTrenera", Email = "AktualniebezTrenera" };
             string pass = "zaq1@WSX";
             string pass1 = "B@rdzotrudnehaslo123";
@@ -85,16 +89,17 @@ namespace PersonalniePL.Data
 
 
             var cw = new List<Cwiczenie> {
-            new Cwiczenie{NazwaCwiczenia="Martwy ciąg klasyczny",TrenerID=users[2].ID,TempoPracy=1101,ZakresPowtorzen=5,IloscSerii=5,CzasPrzerwy="5 minut",SkalaRpes=9.5},
-            new Cwiczenie{NazwaCwiczenia="Wyciskanie sztangi na ławce płaskiej",TrenerID=users[2].ID,TempoPracy=1111,ZakresPowtorzen=6,IloscSerii=4,CzasPrzerwy="3 minuty",SkalaRpes=8.0},
-            new Cwiczenie{NazwaCwiczenia="Martwy ciąg klasyczny",TrenerID=users[3].ID,TempoPracy=1121,ZakresPowtorzen=3,IloscSerii=7,CzasPrzerwy="4 minuty",SkalaRpes=7.0},
-            new Cwiczenie{NazwaCwiczenia="Rozpiętki z hantlami na ławce płaskiej",TrenerID=users[3].ID,TempoPracy=1101,ZakresPowtorzen=8,IloscSerii=4,CzasPrzerwy="75 sekund",SkalaRpes=7.5},
-            new Cwiczenie{NazwaCwiczenia="Martwy ciąg sumo",TrenerID=users[2].ID,TempoPracy=1111,ZakresPowtorzen=5,IloscSerii=5,CzasPrzerwy="4 minuty",SkalaRpes=9.0},
-            new Cwiczenie{NazwaCwiczenia="Przestraszona wrona",TrenerID=users[2].ID,TempoPracy=0101,ZakresPowtorzen=15,IloscSerii=2,CzasPrzerwy="35 sekund",SkalaRpes=6.5},
-            new Cwiczenie{NazwaCwiczenia="Glute bridge",TrenerID=users[2].ID,TempoPracy=1100,ZakresPowtorzen=5,IloscSerii=4,CzasPrzerwy="3 minuty",SkalaRpes=8.5},
-            new Cwiczenie{NazwaCwiczenia="Hip thrust",TrenerID=users[3].ID,TempoPracy=1101,ZakresPowtorzen=10,IloscSerii=4,CzasPrzerwy="50 sekund",SkalaRpes=7.0},
-            new Cwiczenie{NazwaCwiczenia="Przysiad",TrenerID=users[2].ID,TempoPracy=1303,ZakresPowtorzen=5,IloscSerii=5,CzasPrzerwy="2 minuty",SkalaRpes=8.0},
-            new Cwiczenie{NazwaCwiczenia="Wyciskanie żolnierskie",TrenerID=users[3].ID,TempoPracy=1111,ZakresPowtorzen=6,IloscSerii=5,CzasPrzerwy="60 sekund",SkalaRpes=9.5},
+                new Cwiczenie{NazwaCwiczenia="Brak cwiczenia",CzasPrzerwy="0 min"},
+            new Cwiczenie{NazwaCwiczenia="Martwy ciąg klasyczny",TempoPracy=1101,ZakresPowtorzen=5,IloscSerii=5,CzasPrzerwy="5 minut",SkalaRpes=9.5},
+            new Cwiczenie{NazwaCwiczenia="Wyciskanie sztangi na ławce płaskiej",TempoPracy=1111,ZakresPowtorzen=6,IloscSerii=4,CzasPrzerwy="3 minuty",SkalaRpes=8.0},
+            new Cwiczenie{NazwaCwiczenia="Wiosłowanie sztagną w opadzie tułowia",TempoPracy=1121,ZakresPowtorzen=3,IloscSerii=7,CzasPrzerwy="4 minuty",SkalaRpes=7.0},
+            new Cwiczenie{NazwaCwiczenia="Rozpiętki z hantlami na ławce płaskiej",TempoPracy=1101,ZakresPowtorzen=8,IloscSerii=4,CzasPrzerwy="75 sekund",SkalaRpes=7.5},
+            new Cwiczenie{NazwaCwiczenia="Martwy ciąg sumo",TempoPracy=1111,ZakresPowtorzen=5,IloscSerii=5,CzasPrzerwy="4 minuty",SkalaRpes=9.0},
+            new Cwiczenie{NazwaCwiczenia="Przestraszona wrona",TempoPracy=0101,ZakresPowtorzen=15,IloscSerii=2,CzasPrzerwy="35 sekund",SkalaRpes=6.5},
+            new Cwiczenie{NazwaCwiczenia="Glute bridge",TempoPracy=1100,ZakresPowtorzen=5,IloscSerii=4,CzasPrzerwy="3 minuty",SkalaRpes=8.5},
+            new Cwiczenie{NazwaCwiczenia="Hip thrust",TempoPracy=1101,ZakresPowtorzen=10,IloscSerii=4,CzasPrzerwy="50 sekund",SkalaRpes=7.0},
+            new Cwiczenie{NazwaCwiczenia="Przysiad",TempoPracy=1303,ZakresPowtorzen=5,IloscSerii=5,CzasPrzerwy="2 minuty",SkalaRpes=8.0},
+            new Cwiczenie{NazwaCwiczenia="Wyciskanie żolnierskie",TempoPracy=1111,ZakresPowtorzen=6,IloscSerii=5,CzasPrzerwy="60 sekund",SkalaRpes=9.5},
             };
 
             cw.ForEach(r => context.Cwiczenies.Add(r));
