@@ -31,7 +31,6 @@ namespace PersonalniePL.Models
         public virtual ICollection<Podopieczny> Podopiecznies { get; set; }
         public virtual ICollection<Plan> Plans { get; set; }
         public virtual ICollection<PlanKreator> PlanKreators { get; set; }
-        public virtual ICollection<Cwiczenie> Cwiczenies { get; set; }
         public virtual ICollection<Wiadomosc> Wiadomosci { get; set; }
     
         [Display(Name = "Numer konta")]

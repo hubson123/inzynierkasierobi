@@ -39,6 +39,10 @@ namespace PersonalniePL.Data
                .WithMany(t => t.Plans)
                .HasForeignKey(w => w.TrenerID)
                .WillCascadeOnDelete(false);
+            modelBuilder.Entity<PlanKreator>().HasRequired<Trener>(w => w.Trener)
+            .WithMany(t => t.PlanKreators)
+            .HasForeignKey(w => w.TrenerID)
+            .WillCascadeOnDelete(false);
 
 
 

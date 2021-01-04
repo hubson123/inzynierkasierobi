@@ -1,0 +1,7 @@
+nauka:
+1.tsql do 1.11.2020
+2.uml,bpmn do 15.11.2020
+2.jira do 1.12.2020
+3.siebel do 15.12.2020
+4. przypomnienie git, architect do 1.1.2021
+5. ssrs

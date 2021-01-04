@@ -13,16 +13,10 @@
             <h4>Cwiczenie</h4>
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
-                <div class="col-md-10">
-                    
-                        @Html.DropDownList("TrenerID", null, htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.TrenerID, "", new { @class = "text-danger" })
-                   
-                </div></div>
+
     
             <div class="form-group">
-                @Html.LabelFor(model => model.NazwaCwiczenia, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.NazwaCwiczenia, "Nazwa ćwiczenia", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.NazwaCwiczenia, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.NazwaCwiczenia, "", new { @class = "text-danger" })
@@ -30,7 +24,7 @@
             </div>
     
             <div class="form-group">
-                @Html.LabelFor(model => model.IloscSerii, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.IloscSerii,"Ilość serii", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.IloscSerii, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.IloscSerii, "", new { @class = "text-danger" })
@@ -38,7 +32,7 @@
             </div>
     
             <div class="form-group">
-                @Html.LabelFor(model => model.ZakresPowtorzen, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.ZakresPowtorzen, "Zakres powtórzeń", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.ZakresPowtorzen, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.ZakresPowtorzen, "", new { @class = "text-danger" })
@@ -46,7 +40,7 @@
             </div>
     
             <div class="form-group">
-                @Html.LabelFor(model => model.CzasPrzerwy, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.CzasPrzerwy, "Czas przerwy", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.CzasPrzerwy, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.CzasPrzerwy, "", new { @class = "text-danger" })
@@ -54,7 +48,7 @@
             </div>
     
             <div class="form-group">
-                @Html.LabelFor(model => model.SkalaRpes, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.SkalaRpes, "Skala RPE", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.SkalaRpes, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.SkalaRpes, "", new { @class = "text-danger" })
@@ -62,7 +56,7 @@
             </div>
     
             <div class="form-group">
-                @Html.LabelFor(model => model.TempoPracy, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.TempoPracy, "Tempo pracy", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.TempoPracy, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.TempoPracy, "", new { @class = "text-danger" })
@@ -71,13 +65,13 @@
     
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
+                    <input type="submit" value="Dodaj nowe ćwiczenie" class="btn btn-default" />
                 </div>
             </div>
         </div>
     }
     
     <div>
-        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("Wróć do listy planów", "Index","PlanKreators",new { UserName=User.Identity.Name},"")
     </div>
 

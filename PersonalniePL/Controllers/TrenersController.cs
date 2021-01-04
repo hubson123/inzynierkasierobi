@@ -126,7 +126,7 @@ namespace PersonalniePL.Controllers
             {
                 db.Entry(trener).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Home");
             }
             return View(trener);
         }
