@@ -19,7 +19,7 @@ namespace PersonalniePL.Data
             roleManager.Create(new IdentityRole("Trener"));
             roleManager.Create(new IdentityRole("Admin"));
             roleManager.Create(new IdentityRole("Podopieczny"));
-            var us = new ApplicationUser { UserName = "Admin", Email = "hubert.firek@o2.pl" };
+            var us = new ApplicationUser { UserName = "Admin", Email = "firek.hubert@o2.pl" };
             string p = "123H@sloadmina";
             userManager.Create(us, p);
             userManager.AddToRole(us.Id, "Admin");

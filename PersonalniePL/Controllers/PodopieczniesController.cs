@@ -17,8 +17,8 @@ namespace PersonalniePL.Controllers
         private PersonalnyContext db = new PersonalnyContext();
 
         // GET: Podopiecznies
-        [Authorize]
-        public ActionResult Index(string UserName,string sortOrder, string currentFilter, string searchString, int? page)
+        [Authorize(Roles = ("Trener,Admin"))]
+        public ActionResult Index(string UserName, string sortOrder, string currentFilter, string searchString, int? page)
         {
             ViewBag.CurrentSort = sortOrder;
             ViewBag.ImieSortParm = String.IsNullOrEmpty(sortOrder) ? "Imie_desc" : "";
@@ -32,7 +32,7 @@ namespace PersonalniePL.Controllers
             }
 
             ViewBag.CurrentFilter = searchString;
-            var treners = db.Podopiecznies.Include(z=>z.Trener).Where(t => t.Trener.UserName == UserName).ToList();
+            var treners = db.Podopiecznies.Include(z => z.Trener).Where(t => t.Trener.UserName == UserName).ToList();
             if (!String.IsNullOrEmpty(searchString))
             {
                 treners = treners.Where(t => t.Nazwisko.Contains(searchString)).ToList();
@@ -91,7 +91,7 @@ namespace PersonalniePL.Controllers
         }
 
         // GET: Podopiecznies/Edit/5
-        [Authorize]
+        [Authorize(Roles = "Podopieczny")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -107,7 +107,7 @@ namespace PersonalniePL.Controllers
             return View(podopieczny);
         }
         // GET: Podopiecznies/Edit/5
-        [Authorize]
+        [Authorize(Roles ="Podopieczny")]
         public ActionResult Dolacz(int? id,string st)
         {
             if (st == null || id==null)
@@ -154,13 +154,13 @@ namespace PersonalniePL.Controllers
                 }
                 db.Entry(podopieczny).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Home");
+                return RedirectToAction("Index","Home");
             }
             return View(podopieczny);
         }
 
         // GET: Podopiecznies/Delete/5
-        [Authorize]
+        [Authorize (Roles="Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

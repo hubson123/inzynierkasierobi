@@ -1,20 +1,9 @@
 ﻿@model IEnumerable<PersonalniePL.Models.Cwiczenie>
-
-@{
+@{ 
     Layout = null;
 }
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
+<h2>Lista ćwiczeń: </h2>
+<br />
     <table class="table">
         <tr>
       
@@ -37,38 +26,36 @@
             <th>
                 @Html.DisplayNameFor(model => model.TempoPracy)
             </th>
-            <th></th>
+            
         </tr>
     
     @foreach (var item in Model) {
-        <tr>
-        
-            <td>
-                @Html.DisplayFor(modelItem => item.NazwaCwiczenia)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IloscSerii)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ZakresPowtorzen)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CzasPrzerwy)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SkalaRpes)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TempoPracy)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-            </td>
-        </tr>
+    <tr>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.NazwaCwiczenia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IloscSerii)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ZakresPowtorzen)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CzasPrzerwy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SkalaRpes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TempoPracy)
+        </td>
+        @if (User.IsInRole("Admin"))
+        {
+            <td> @Html.ActionLink("Usun ćwiczenie", "Delete", new { id = item.Id })</td>
+        }
+    </tr>
     }
     
     </table>
-</body>
-</html>
+
