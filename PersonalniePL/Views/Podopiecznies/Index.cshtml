@@ -55,7 +55,12 @@
                     <ul class="dropdown-menu">
                         <li>@Html.ActionLink("Prześlij plan", "Create", "Plans", new { id = item.ID }, "") |</li>
                         <li>@Html.ActionLink("Rozpisz plan na platformie", "Create", "PlanKreators", new { id = item.ID }, "") |</li>
-                        <li> @Html.ActionLink("Zakoncz wspolprace", "Delete", new { id = item.ID })</li></ul></div>
+                        <li> @Html.ActionLink("Zakoncz wspolprace", "Delete", new { id = item.ID })</li>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li> @Html.ActionLink("Usun podopiecznego", "Delete", new { id = item.ID })</li>
+                        }
+                    </ul></div>
 </td>
         </tr>
     }

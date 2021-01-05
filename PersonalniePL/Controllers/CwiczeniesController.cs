@@ -16,12 +16,15 @@ namespace PersonalniePL.Controllers
         private PersonalnyContext db = new PersonalnyContext();
 
         // GET: Cwiczenies
+        [Authorize]
         public ActionResult Index()
         {
-           return View();
+            var ddd = db.Cwiczenies.Where(t => t.Id > 1);
+           return View(ddd.ToList());
         }
 
         // GET: Cwiczenies/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,6 +40,7 @@ namespace PersonalniePL.Controllers
         }
 
         // GET: Cwiczenies/Create
+        [Authorize(Roles = "Trener")]
         public ActionResult Create()
         {
           return View();
@@ -60,6 +64,7 @@ namespace PersonalniePL.Controllers
         }
 
         // GET: Cwiczenies/Edit/5
+        [Authorize(Roles = "Trener")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -91,6 +96,7 @@ namespace PersonalniePL.Controllers
         }
 
         // GET: Cwiczenies/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

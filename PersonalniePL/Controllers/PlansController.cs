@@ -23,7 +23,7 @@ namespace PersonalniePL.Controllers
             
             return View(plans.ToList());
         }
-        [Authorize]
+        [Authorize (Roles ="Trener")]
         // GET: Plans/Details/5
         public ActionResult Details(int? id)
         {
@@ -38,7 +38,7 @@ namespace PersonalniePL.Controllers
             }
             return View(plan);
         }
-        [Authorize]
+        [Authorize (Roles="Admin,Trener")]
         public ActionResult Odblok(int? id)
         {
             if (id == null)
@@ -65,7 +65,7 @@ namespace PersonalniePL.Controllers
             return View(plan);
         }
         // GET: Plans/Create
-        [Authorize]
+        [Authorize(Roles = "Trener")]
         public ActionResult Create(int id)
         {
             ViewBag.RodzajPlanuID = new SelectList(db.RodzajPlanus, "ID", "Nazwa");
@@ -101,7 +101,7 @@ namespace PersonalniePL.Controllers
         }
 
         // GET: Plans/Edit/5
-        [Authorize]
+        [Authorize(Roles = "Trener")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -144,7 +144,7 @@ namespace PersonalniePL.Controllers
             return View(plan);
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin,Trener")]
         // GET: Plans/Delete/5
         public ActionResult Delete(int? id)
         {

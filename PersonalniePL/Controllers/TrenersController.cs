@@ -18,6 +18,7 @@ namespace PersonalniePL.Controllers
         private PersonalnyContext db = new PersonalnyContext();
 
         // GET: Treners
+        [Authorize(Roles = "Podopieczny,Admin")]
         public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
             ViewBag.CurrentSort = sortOrder;
@@ -69,7 +70,7 @@ namespace PersonalniePL.Controllers
             }
             return View(trener);
         }
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         // GET: Treners/Create
         public ActionResult Create()
         {
@@ -92,7 +93,7 @@ namespace PersonalniePL.Controllers
 
             return View(trener);
         }
-        [Authorize]
+        [Authorize(Roles = "Trener")]
         // GET: Treners/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -126,12 +127,12 @@ namespace PersonalniePL.Controllers
             {
                 db.Entry(trener).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Home");
+                return RedirectToAction("Index","Home");
             }
             return View(trener);
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         // GET: Treners/Delete/5
         public ActionResult Delete(int? id)
         {

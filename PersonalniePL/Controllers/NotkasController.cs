@@ -16,6 +16,7 @@ namespace PersonalniePL.Controllers
         private PersonalnyContext db = new PersonalnyContext();
 
         // GET: Notkas
+        [Authorize]
         public ActionResult Index(string UserName)
         {
             var widok = db.Notkas.Where(m => m.UserName == UserName);
@@ -23,6 +24,7 @@ namespace PersonalniePL.Controllers
         }
 
         // GET: Notkas/Details/5
+        [Authorize (Roles="Admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -38,6 +40,7 @@ namespace PersonalniePL.Controllers
         }
 
         // GET: Notkas/Create
+        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -61,6 +64,7 @@ namespace PersonalniePL.Controllers
         }
 
         // GET: Notkas/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -92,6 +96,7 @@ namespace PersonalniePL.Controllers
         }
 
         // GET: Notkas/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)

@@ -65,6 +65,10 @@
                 @Html.DisplayFor(modelItem => item.LiczbaMaksPodopiecznych)
             </td>
             <td>
+                @if (User.IsInRole("Admin"))
+                {
+                     @Html.ActionLink("Usun trenera", "Delete", new { id = item.ID })
+                }
                 @if (item.LiczbaMaksPodopiecznych == @item.Podopiecznies.Count())
                 {
                     <h6>Przykro mi ale mam już komplet podopiecznych. </h6>
